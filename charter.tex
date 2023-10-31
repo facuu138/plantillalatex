@@ -1,23 +1,24 @@
 \documentclass[
 11pt, % The default document font size, options: 10pt, 11pt, 12pt
-codirector, % Uncomment to add a codirector to the title page
+%codirector, % Uncomment to add a codirector to the title page
 ]{charter} 
 
 
 
 
 % El títulos de la memoria, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \ttitle
-\titulo{Título del proyecto} 
+\titulo{Sistema de monitoreo de ocupación en
+espacios internos mediante BLE Beacons} 
 
 % Nombre del posgrado, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \degreename
-\posgrado{Carrera de Especialización en Sistemas Embebidos} 
-%\posgrado{Carrera de Especialización en Internet de las Cosas} 
+%\posgrado{Carrera de Especialización en Sistemas Embebidos} 
+\posgrado{Carrera de Especialización en Internet de las Cosas} 
 %\posgrado{Carrera de Especialización en Intelegencia Artificial}
 %\posgrado{Maestría en Sistemas Embebidos} 
 %\posgrado{Maestría en Internet de las cosas}
 
 % Tu nombre, se puede usar el cualquier lugar del documento con el comando \authorname
-\autor{Nombre del Autor} 
+\autor{Facundo Fernández} 
 
 % El nombre del director y co-director, se puede usar el cualquier lugar del documento con el comando \supname y \cosupname y \pertesupname y \pertecosupname
 \director{Nombre del Director}
@@ -38,9 +39,9 @@ codirector, % Uncomment to add a codirector to the title page
 \juradoTres{Nombre y Apellido (3)}
 \pertenenciaJurTres{pertenencia (3)}
  
-\fechaINICIO{30 de abril de 2021}		%Fecha de inicio de la cursada de GdP \fechaInicioName
-\fechaFINALPlan{18 de junio de 2021} 	%Fecha de final de cursada de GdP
-\fechaFINALTrabajo{15 de mayo de 2022}	%Fecha de defensa pública del trabajo final
+\fechaINICIO{17 de octubre de 2023}		%Fecha de inicio de la cursada de GdP \fechaInicioName
+\fechaFINALPlan{05 de diciembre de 2023} 	%Fecha de final de cursada de GdP
+\fechaFINALTrabajo{15 de junio de 2024}	%Fecha de defensa pública del trabajo final
 
 
 \begin{document}
@@ -69,8 +70,8 @@ codirector, % Uncomment to add a codirector to the title page
 \rowcolor[HTML]{C0C0C0} 
 Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios realizados} & Fecha      \\ \hline
 0      & Creación del documento                                 &\fechaInicioName \\ \hline
-%1      & Se completa hasta el punto 4 inclusive                 & dd/mm/aaaa \\ \hline
-%2      & Se completa hasta el punto 7 inclusive
+1      & Se completa hasta el punto 5 inclusive                 & 31 de octubre de 2023 \\ \hline
+%2      & Se completa hasta el punto 9 inclusive
 %		  Se puede agregar algo más \newline
 %		  En distintas líneas \newline
 %		  Así                                                    & dd/mm/aaaa \\ \hline
@@ -92,7 +93,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en \textcolor{red}{la implementación de un prototipo de un sistema de control de temperatura de un calefón}, y tendrá un presupuesto preliminar estimado de \textcolor{red}{600} h de trabajo y \textcolor{red}{\$XXX}, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
+Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en la implementación de un prototipo de un sistema de monitoreo de ocupación utilizando Beacons Bluetooth Low Energy, y tendrá un presupuesto preliminar estimado de {600} h de trabajo y {\$200} USD, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -115,52 +116,39 @@ Se adjunta a esta acta la planificación inicial.
 \section{1. Descripción técnica-conceptual del proyecto a realizar}
 \label{sec:descripcion}
 
+\setlength{\parindent}{1cm}El proyecto nace como un emprendimiento personal con un enfoque específico para gimnasios y recintos deportivos en donde los usuarios (clientes del gimnasio) pueden acceder a distintas horas sin ningún tipo de limitación. Este emprendimiento surge de la necesidad de entender el comportamiento de usuarios en gimnasios con el objetivo de proporcionar al cliente (gimnasio) la capacidad de entender a su clientela y cómo usan sus instalaciones. 
 
-\begin{consigna}{red} % El bloque "consigna" se usa para poner texto en rojo y dar una pequeña ayuda sobre cómo completar la sección. En cada entrega parcial deben eliminar los comandos begin y end del bloque consigna de las secciones que hayan completado.
+\setlength{\parindent}{1cm}Adicional, esta herramienta permite entender el tiempo de visita de una persona. El tiempo de visita es una medida sumamente importante para entender a los usuarios que se mantienen como clientes de un gimnasio y a los que no. En el contexto de clientes de gimnasios, es más barato retener a una persona para que siga siendo cliente que conseguir nuevos. El objetivo general es poder dar una herramienta más a los gimnasios donde puedan utilizar datos para tomar decisiones de negocio.
 
-El objetivo es que el lector en una o dos páginas entienda de qué trata el proyecto y cuáles son sus desafíos, cuál es la motivación para realizarlo y su importancia.
+\setlength{\parindent}{1cm}Debido a que este proyecto es un prototipo y un emprendimiento personal, no se cuenta con financiamiento de ningún tipo, por lo que se trabajará en diseñar un sistema funcional que cumpla con las características de un mínimo producto viable, financiado completamente por el autor de este documento. Una de las ventajas de abordarlo de esta manera es que no existen limitaciones de desarrollo ni hay ningún interesado que pueda tener incidencia en el resultado final del trabajo.
 
-Se debe introducir el contexto del proyecto, el estado del arte en la temática, describir la propuesta de valor, cúal es el problema que atiende y cuál es la solución que se propone. Se debe dar una descripción funcional de la solución que incluya un diagrama en bloques.
+\setlength{\parindent}{1cm}En el contexto actual de la tecnología y la creciente demanda de soluciones de posicionamiento en interiores, el presente proyecto se centra en la implementación de un sistema innovador de monitoreo de ocupación en espacios interiores utilizando la tecnología Bluetooth Low Energy (BLE) Beacons. Esta tecnología permite la ubicación precisa de dispositivos móviles en entornos cerrados, brindando a los usuarios una experiencia de ubicación confiable y en tiempo real. La esencia de este proyecto radica en proporcionar a los propietarios de recintos o edificios una herramienta para la gestión eficiente de la ocupación, así como una herramienta más de recaudación de datos de uso y comportamiento. La solución propuesta se distingue por su capacidad para ofrecer datos precisos y actualizados sobre la cantidad de personas presentes en el recinto en cualquier momento dado, así como la capacidad de determinar el tiempo de visita promedio de un usuario.
 
-Puede ser útil incluir en esta sección la respuesta a alguna de estas preguntas:
+\setlength{\parindent}{1cm}El desafío que aborda este proyecto es la falta de sistemas de monitoreo de ocupación precisos y en tiempo real en entornos interiores. La tecnología BLE Beacons junto con la estación base ESP32-C3 proporciona una solución efectiva y rentable. Mediante la emisión de señales de baja energía, los Beacons identifican la presencia de dispositivos móviles, permitiendo a la aplicación de monitoreo determinar la ocupación actual a través de un algoritmo de triangulación. Esta información se almacena en una base de datos no relacional alojada en MongoDB, brindando al propietario acceso a datos cruciales para la toma de decisiones informadas.
 
-\begin{itemize}
-	\item ¿Cuál es el contexto del proyecto, es un emprendimiento personal, un proyecto para una empresa, es parte del programa de vinculación con empresas del posgrado?
-	\item ¿Existen o aplican condiciones especiales al proyecto, financiamiento de algún programa público o privado, acuerdos de confidencialidad, acuerdos sobre la propiedad intelectual de los entregables u otros?
-	\item ¿Cómo se compara la solución propuesta con el estado del arte en el campo de aplicación? ¿En qué aspectos destaca?
-	\item ¿Ayuda a la explicación si se incluye un lienzo Canvas del Modelo de Negocio?
-	\item ¿En qué estado del ciclo de vida está la solución que se propone?
-	\item ¿Cuáles son las características del cliente (el adoptante de los entregables del proyecto) qué valora, qué necesita?
-	\item ¿Por dónde pasa la innovación?
-\end{itemize}
-
-La descripción técnica-conceptual \textbf{debe incluir al menos un diagrama en bloques del sistema} y descripción funcional de la solución propuesta.
-
-Las figuras se deben mencionar en el texto ANTES de que aparezcan con una frase como la siguiente: ``En la Figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se observa que...''.  La regla es que las figuras nunca pueden ir antes de ser mencionadas en el texto, porque sino el lector no entiende por qué de pronto aparece una figura.
+\setlength{\parindent}{1cm}El sistema se compone de cuatro elementos principales: los BLE Beacons, la estación base ESP32-C3, la aplicación de monitoreo y la base de datos no relacional. Los Beacons emiten señales identificativas, que son escaneadas por la estación base. La aplicación de monitoreo procesa estas señales para determinar la proximidad de los dispositivos móviles y actualiza la base de datos con la información de ocupación. A través de un panel de control intuitivo, el propietario del recinto puede visualizar la ocupación actual y acceder a informes históricos. En la Figura \ref{fig:diagBloques} se presenta el diagrama de bloques del sistema, donde se observa claramente la distribución y diseño de los componentes clave.
 
 \begin{figure}[htpb]
 \centering 
-\includegraphics[width=.5\textwidth]{./Figuras/diagBloques.png}
+\includegraphics[width=.7\textwidth]{./Figuras/diagBloques.png}
 \caption{Diagrama en bloques del sistema}
 \label{fig:diagBloques}
 \end{figure}
 
 \vspace{25px}
 
-El tamaño de la tipografía en TODAS las figuras debe ser adecuado para que NO pase lo que ocurre acá, donde el lector debe esforzarse para poder leer el texto. Los colores usados en el diagrama deben ser adecuados, tal que ayuden a comprender mejor el diagrama, preferentemente en la gama de colores pastel.
-\end{consigna}
+\setlength{\parindent}{1cm}La innovación radica en la combinación efectiva de la tecnología BLE Beacons con la estación base ESP32-C3 para ofrecer una solución escalable y rentable de monitoreo de ocupación en interiores. Esta solución se destaca por su capacidad para proporcionar datos precisos y accesibles, sentando las bases para futuras implementaciones en diversos entornos comerciales y públicos. 
+
+\setlength{\parindent}{1cm}Para la realización de este trabajo, se probará y utilizarán hasta 6 beacons o balizas en un entorno reducido, con el objetivo de probar la viabilidad del proyecto. Este entorno reducido no superará los 50 m$^2$ y será en un ambiente doméstico. Para el panel de control se creará una aplicación accesible sólo a través de web, con el objetivo de reducir costos de desarrollo.
 
 \section{2. Identificación y análisis de los interesados}
 \label{sec:interesados}
 
-\begin{consigna}{red} % este comando se debe borrar para la entrega, junto con la contraparte \end{consigna}{red} 
- 
-\textbf{Nota importante:} borrar esto y todas las consignas en color rojo antes de entregar este documento). Esto se hace eliminando el par de comandos que forman el bloque consigna, \verb!\begin{consigna}{red}! y \verb!\end{consigna}{red}! del código. 
- 
-Es inusual que una misma persona esté en más de un rol, incluso en proyectos chicos. Si se considera que una persona cumple dos o más roles, entonces solo dejarla en el rol más importante. 
+\setlength{\parindent}{1cm}Dado que este proyecto es de carácter personal, no involucra a interesados externos o a un equipo de trabajo formal. En este contexto, la principal parte interesada es el autor, como el iniciador y ejecutor del proyecto. Como único responsable, el autor asume todas las funciones, desde la planificación y desarrollo hasta la gestión económica y control de entregables. Esta autonomía proporciona flexibilidad y agilidad en la toma de decisiones, permitiendo una ejecución eficiente del proyecto.
 
-Por ejemplo, si una persona es Cliente pero también colabora u orienta, dejarla solo como Cliente. Si una persona es el Responsable, no debe ser colocado también como miembro del equipo.
+\setlength{\parindent}{1cm}En calidad de responsable, el rol abarca la supervisión integral del proyecto, incluyendo la gestión económica, planificación de tareas, desarrollo de los componentes técnicos, y aseguramiento de la calidad de los entregables. Además, el responsable asume la responsabilidad de mantener el proyecto dentro de los plazos establecidos y gestionar eficazmente los recursos disponibles.
 
+\setlength{\parindent}{1cm}El director, por su parte, desempeñará un papel esencial al brindar orientación y asesoramiento experto en todas las facetas del proyecto. Se espera que actúe como un referente en cuestiones técnicas y organizativas desde el inicio hasta la finalización del proyecto, aportando valiosos conocimientos y experiencia para asegurar su éxito. Su apoyo será fundamental para superar cualquier desafío que pueda surgir a lo largo del desarrollo del proyecto.
 
 \begin{table}[ht]
 %\caption{Identificación de los interesados}
@@ -169,75 +157,59 @@ Por ejemplo, si una persona es Cliente pero también colabora u orienta, dejarla
 \hline
 \rowcolor[HTML]{C0C0C0} 
 Rol           & Nombre y Apellido & Organización 	& Puesto 	\\ \hline
-Auspiciante   &                   &              	&        	\\ \hline
+Auspiciante   & -         		 & -             	& -   	\\ \hline
 Cliente       & \clientename      &\empclientename	&        	\\ \hline
-Impulsor      &                   &              	&        	\\ \hline
+Impulsor      & -         		 & -             	& -      	\\ \hline
 Responsable   & \authorname       & FIUBA        	& Alumno 	\\ \hline
-Colaboradores &                   &              	&        	\\ \hline
+Colaboradores & -         		 & -             	& -      	\\ \hline
 Orientador    & \supname	      & \pertesupname 	& Director Trabajo final \\ \hline
-Equipo        & miembro1 \newline 
-				miembro2          &              	&        	\\ \hline
-Opositores    &                   &              	&        	\\ \hline
-Usuario final &                   &              	&        	\\ \hline
+Equipo        & -         		 & -             	& -       	\\ \hline
+Opositores    & -                  & -             	& -       	\\ \hline
+Usuario final & -			      & -             	&  -      	\\ \hline
 \end{tabularx}
 \end{table}
-
-El Director suele ser uno de los Orientadores.
-
-No dejar celdas vacías; si no hay nada que poner en una celda colocar un signo ``-''.
-
-No dejar filas vacías; si no hay nada que poner en una fila entonces eliminarla.
-
-Es deseable listar a continuación las principales características de cada interesado.
- 
-Por ejemplo:
-\begin{itemize}
-	\item Auspiciante: es riguroso y exigente con la rendición de gastos. Tener mucho cuidado con esto.
-	\item Equipo: Juan Perez, suele pedir licencia porque tiene un familiar con una enfermedad. Planificar considerando esto.
-	\item Orientador: María Gómez va a poder ayudar mucho con la definición de los requerimientos.
-\end{itemize}
-
-\end{consigna} % este comando se debe borrar para la entrega, junto con la contraparte \begin{consigna}{red}
 
 
 
 \section{3. Propósito del proyecto}
 \label{sec:proposito}
 
-\begin{consigna}{red}
-¿Por qué se hace el proyecto? ¿Qué se quiere lograr? 
-
-Se recomienda que sea solo un párrafo que empiece diciendo ``El propósito de este proyecto es...''.
-\end{consigna}
+\setlength{\parindent}{1cm}El propósito de este proyecto es implementar un sistema de monitoreo de ocupación en espacios interiores, principalmente en gimnasios, mediante la tecnología Bluetooth Low Energy (BLE) Beacons. Se busca proporcionar al propietario del recinto datos precisos, históricos y de calidad sobre la cantidad de personas presentes en cualquier momento dado, permitiendo así una gestión eficiente de la ocupación y una toma de decisiones informadas a través de datos con el objetivo de medir el comportamiento de los usuarios. Esta solución pionera sienta las bases para futuras implementaciones en diversos entornos comerciales y públicos, abriendo nuevas posibilidades en el campo del posicionamiento en interiores.
 
 \section{4. Alcance del proyecto}
 \label{sec:alcance}
 
-\begin{consigna}{red}
-¿Qué se incluye y que no se incluye en este proyecto?
+\setlength{\parindent}{1cm}Este proyecto abarca la planificación, diseño, implementación y puesta en funcionamiento de un sistema de monitoreo de ocupación en espacios interiores utilizando la tecnología Bluetooth Low Energy (BLE) Beacons en un espacio no mayor a los 50 m$^2$. Incluye la adquisición y ubicación estratégica de los BLE Beacons, así como la configuración de la estación base ESP32-C3 y el desarrollo de la aplicación web de monitoreo. También se contempla la implementación de una base de datos no relacional en MongoDB para el almacenamiento y gestión de la información de ocupación. Además, se llevarán a cabo pruebas exhaustivas para verificar el funcionamiento correcto del sistema y se proporcionará una interfaz de usuario intuitiva en forma de panel de control para que el propietario del recinto pueda visualizar la ocupación actual, acceder a informes históricos y analizar los datos si lo considera necesario. Todos los costos relacionados con el desarrollo, como son el hardware y software serán cubiertos por el autor.
 
-Se refiere al trabajo a hacer para entregar el producto o resultado especificado. 
+El presente proyecto no incluye:
+\begin{itemize}
+	\item La adquisición de hardware o software adicional no especificado en los requerimientos, salvo que sea necesario para la integración del sistema y se determine previamente.
+	\item La adquisición o configuración de servicios de conectividad de red, como proveedores de internet o servicios de datos móviles.
+	\item Mantenimiento continuo del sistema después de la finalización del proyecto
+	\item La capacitación avanzada en programación o configuración de hardware que no esté directamente relacionada con el sistema implementado.
+	\item Una aplicación de configuración del sistema, a menos que el autor lo requiera
+\end{itemize}
 
-Explicitar todo lo quede comprendido dentro del alcance del proyecto.
-
-Explicitar además todo lo que no quede incluido (``El presente proyecto no incluye...'')
-
-\end{consigna}
+\setlength{\parindent}{1cm}Cualquier modificación o extensión del alcance del proyecto requerirá una revisión y aprobación previa por parte del director del proyecto y el responsable del mismo.
 
 
 \section{5. Supuestos del proyecto}
 \label{sec:supuestos}
 
-\begin{consigna}{red}
-``Para el desarrollo del presente proyecto se supone que: ...''
+Para el desarrollo del presente proyecto se supone que:
 
 \begin{itemize}
-	\item Supuesto 1
-	\item Supuesto 2...
+	\item Disponibilidad de Recursos Humanos: Se asume que el responsable del proyecto contará con el tiempo y dedicación necesarios para llevar a cabo todas las etapas de planificación, implementación y puesta en marcha del sistema. Además, se presupone la colaboración activa del director para brindar orientación técnica y organizativa.
+	\item Estabilidad de las Condiciones del Entorno: Se supone que las condiciones ambientales y estructurales en los recintos seleccionados serán estables y no experimentarán cambios significativos durante el período de implementación del proyecto.
+	\item Disponibilidad de Equipamiento y Materiales: Se presupone que se podrá adquirir el hardware necesario, incluyendo los BLE Beacons y la estación base ESP32-C3, así como cualquier otro equipo o material requerido para la implementación del sistema.
+	\item Presupuesto: Se supone que el presupuesto establecido de {\$200} USD será suficiente para cubrir los costos de hardware y software, así como cualquier otro material requerido para la implementación del sistema. En caso de incurrir en un gasto mayor, se evaluará la viabilidad, manteniendo un tope máximo de {\$1,000} USD.
+	\item Factibilidad Técnica: Se considera que la tecnología BLE Beacons y el microcontrolador ESP32-C3 son adecuados para la aplicación prevista y no presentarán inconvenientes técnicos significativos en su configuración y funcionamiento.
+	\item Cumplimiento de Regulaciones y Normativas: Se parte del supuesto de que el proyecto cumple con todas las regulaciones y normativas locales, estatales y federales aplicables, y que no se requerirá de permisos o licencias adicionales para la implementación del sistema.
+	\item Estabilidad de los Protocolos de Comunicación: Se presupone que los protocolos de Internet estándar seleccionados (HTTP o MQTT) para la comunicación entre la aplicación móvil y la base de datos funcionarán de manera estable y confiable.
+	\item Acceso a la Tecnología y Herramientas: Se asume que se contará con acceso a las tecnologías y herramientas necesarias para el desarrollo de la aplicación de monitoreo y la configuración de la base de datos en MongoDB.
+	\item Disponibilidad de Energía Eléctrica: Se presupone que se dispondrá de suministro eléctrico confiable ya sea a través de baterías o red eléctrica para alimentar tanto los BLE Beacons como la estación base y demás equipos asociados al sistema.
+	\item Compatibilidad de Dispositivos Móviles: Se supone que los dispositivos móviles que se encuentren en el rango de los BLE Beacons serán compatibles con la tecnología Bluetooth Low Energy y podrán recibir las señales emitidas. 
 \end{itemize}
-
-Por ejemplo, se podrían incluir supuestos respecto a disponibilidad de tiempo y recursos humanos y materiales, sobre la factibilidad técnica de distintos aspectos del proyecto, sobre otras cuestiones que sean necesarias para el éxito del proyecto como condiciones macroeconómicas o reglamentarias.
-\end{consigna}
 
 \section{6. Requerimientos}
 \label{sec:requerimientos}
