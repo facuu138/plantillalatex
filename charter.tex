@@ -2,7 +2,9 @@
 11pt, % The default document font size, options: 10pt, 11pt, 12pt
 %codirector, % Uncomment to add a codirector to the title page
 ]{charter} 
-
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
+\renewcommand{\labelenumiv}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
 
 
 
@@ -41,7 +43,7 @@ espacios internos mediante BLE \textit{Beacons}}
  
 \fechaINICIO{17 de octubre de 2023}		%Fecha de inicio de la cursada de GdP \fechaInicioName
 \fechaFINALPlan{05 de diciembre de 2023} 	%Fecha de final de cursada de GdP
-\fechaFINALTrabajo{15 de junio de 2024}	%Fecha de defensa pública del trabajo final
+\fechaFINALTrabajo{16 de septiembre de 2024}	%Fecha de defensa pública del trabajo final
 
 
 \begin{document}
@@ -71,10 +73,11 @@ espacios internos mediante BLE \textit{Beacons}}
 Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios realizados} & Fecha      \\ \hline
 0      & Creación del documento                                 &\fechaInicioName \\ \hline
 1      & Se completa hasta el punto 5 inclusive                 & 31 de octubre de 2023 \\ \hline
-%2      & Se completa hasta el punto 9 inclusive
+2      & Se completa hasta el punto 9 inclusive & 7 de noviembre de 2023
 %		  Se puede agregar algo más \newline
 %		  En distintas líneas \newline
-%		  Así                                                    & dd/mm/aaaa \\ \hline
+%		  Así                                                    & dd/mm/aaaa 
+\\ \hline
 %3      & Se completa hasta el punto 11 inclusive                & dd/mm/aaaa \\ \hline
 %4      & Se completa el plan	                                 & dd/mm/aaaa \\ \hline
 \end{tabularx}
@@ -93,7 +96,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en la implementación de un prototipo de un sistema de monitoreo de ocupación utilizando \textit{Beacons Bluetooth Low Energy}, y tendrá un presupuesto preliminar estimado de {600} h de trabajo y {\$200} USD, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
+Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en la implementación de un prototipo de un sistema de monitoreo de ocupación utilizando \textit{Beacons Bluetooth Low Energy}, y tendrá un presupuesto preliminar estimado de {715} h de trabajo y {\$200} USD, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -128,7 +131,7 @@ La esencia de este proyecto radica en proporcionar a los propietarios de recinto
 
 El desafío que aborda este proyecto es la falta de sistemas de monitoreo de ocupación precisos y en tiempo real en entornos interiores. La tecnología BLE \textit{Beacons} junto con la estación base ESP32-C3 proporciona una solución efectiva y rentable. Mediante la emisión de señales de baja energía, los \textit{Beacons} identifican la presencia de dispositivos móviles, permitiendo a la aplicación de monitoreo determinar la ocupación actual a través de un algoritmo de triangulación. Esta información se almacena en una base de datos no relacional alojada en MongoDB, brindando al propietario acceso a datos cruciales para la toma de decisiones informadas.
 
-El sistema se compone de cuatro elementos principales: los BLE \textit{Beacons}, la estación base ESP32-C3, la aplicación de monitoreo y la base de datos no relacional. Los \textit{Beacons} emiten señales identificativas, que son escaneadas por la estación base. La aplicación de monitoreo procesa estas señales para determinar la proximidad de los dispositivos móviles y actualiza la base de datos con la información de ocupación. A través de un panel de control intuitivo, el propietario del recinto puede visualizar la ocupación actual y acceder a informes históricos. En la Figura \ref{fig:diagBloques} se presenta el diagrama de bloques del sistema, donde se observa claramente la distribución y diseño de los componentes clave.
+El sistema se compone de cuatro elementos principales: los BLE \textit{Beacons}, la estación base ESP32-C3, la aplicación de monitoreo y la base de datos no relacional. Los \textit{Beacons} emiten señales identificativas, que son escaneadas por la estación base. La aplicación de monitoreo procesa estas señales para determinar la proximidad de los dispositivos móviles y actualiza la base de datos con la información de ocupación. A través de un panel de control intuitivo, el propietario del recinto puede visualizar la ocupación actual y acceder a informes históricos. En la figura \ref{fig:diagBloques} se presenta el diagrama de bloques del sistema, donde se observa claramente la distribución y diseño de los componentes clave.
 
 \begin{figure}[htpb]
 \centering 
@@ -201,8 +204,6 @@ Cualquier modificación o extensión del alcance del proyecto requerirá una rev
 \section{5. Supuestos del proyecto}
 \label{sec:supuestos}
 
-Para el desarrollo del presente proyecto se supone que:
-
 \begin{itemize}
 	\item Disponibilidad de recursos humanos: se asume que el responsable del proyecto contará con el tiempo y dedicación necesarios para llevar a cabo todas las etapas de planificación, implementación y puesta en marcha del sistema. Además, se presupone la colaboración activa del director para brindar orientación técnica y organizativa.
 	\item Estabilidad de las condiciones del entorno: se supone que las condiciones ambientales y estructurales en los recintos seleccionados serán estables y no experimentarán cambios significativos durante el período de implementación del proyecto. Por condiciones ambientales y estructurales se refiere a la disposición física del espacio como paredes y muebles, así como fluctuaciones significativas en la temperatura o en la humedad ya que estas pueden influir en cómo las señales \textit{Bluetooth} se propagan en el espacio.
@@ -219,105 +220,212 @@ Para el desarrollo del presente proyecto se supone que:
 \section{6. Requerimientos}
 \label{sec:requerimientos}
 
-\begin{consigna}{red}
-Los requerimientos deben numerarse y de ser posible estar agruparlos por afinidad, por ejemplo:
-
 \begin{enumerate}
 	\item Requerimientos funcionales
 		\begin{enumerate}
-			\item El sistema debe...
-			\item Tal componente debe...
-			\item El usuario debe poder...
+			\item Funcionalidades
+				\begin{enumerate}
+					\item El sistema debe ser capaz de recibir señales BLE de hasta 6 \textit{beacons}.
+					\item El sistema debe actualizarse en tiempo real o en un tiempo menor a dos minutos.
+					\item El sistema debe poder determinar un identificador para cada dispositivo.
+					\item El sistema debe ser capaz de procesar las señales y enviarlas a la base de datos en MongoDB.
+					\item El sistema debe implementar un algoritmo de triangulación basado en las señales recibidas.
+					\item El sistema debe poder determinar la ubicación de un dispositivo determinado.
+					\item El sistema debe poder determinar la cantidad de tiempo que un dispositivo estuvo en un lugar.
+					\item El sistema debe proporcionar una interfaz de usuario para visualizar y acceder a los datos.
+				\end{enumerate}
+			\item Configuración del sistema
+				\begin{enumerate}
+					\item El sistema debe ser capaz de gestionar la conexión y comunicación entre los \textit{beacons} (ESP32-C3 \textit{Bluetooth Low Energy}) y los dispositivos de procesamiento (\textit{Hub} - ESP32-C3).
+					\item El sistema debe permitir la configuración de parámetros como la potencia de transmisión de los \textit{beacons} y la frecuencia de actualización de la ubicación.
+				\end{enumerate}
+			\item Protocolo MQTT
+				\begin{enumerate}
+					\item El protocolo utilizado para la gestión y envío de datos será MQTT.
+					\item El sistema debe garantizar la fiabilidad y consistencia en el envío de datos a través del protocolo MQTT.
+					\item Se deben establecer mecanismos de detección y gestión de errores en el envío de datos a través de MQTT, asegurando la resiliencia del sistema ante posibles fallos de comunicación.
+					\item El sistema debe ser capaz de manejar la concurrencia de múltiples dispositivos enviando datos a través de MQTT de manera simultánea.
+					\item Se debe proporcionar un mecanismo de notificación o alerta en caso de fallos en la comunicación a través de MQTT para permitir una respuesta rápida y eficaz.
+				\end{enumerate}
 		\end{enumerate}
 	\item Requerimientos de documentación
 		\begin{enumerate}
-			\item Requerimiento 1
-			\item Requerimiento 2 (prioridad menor)
+			\item Deberá proporcionarse documentación detallada sobre la configuración y conexión de los \textit{beacons} BLE (ESP32-C3).
+			\item Se deberá documentar el proceso de configuración y programación del dispositivo de procesamiento (ESP32-C3) para actuar como \textit{hub}.
+			\item Se debe generar documentación sobre el algoritmo de triangulación utilizado, incluyendo diagramas y fórmulas utilizadas.
+			\item Se debe proporcionar una guía de usuario para la interfaz de usuario del panel de control.
+			\item Documentación de código: comentarios detallados en el código fuente para facilitar el mantenimiento y comprensión futura.
+			\item Deberá proporcionarse documentación detallada sobre la configuración de parámetros, como la potencia de transmisión de los \textit{beacons} y la frecuencia de actualización de la ubicación.
 		\end{enumerate}
-	\item Requerimiento de testing...
-	\item Requerimientos de la interfaz...
-	\item Requerimientos interoperabilidad...
-	\item etc...
+	\item Requerimiento de \textit{testing}
+		\begin{enumerate}
+			\item Se deben realizar pruebas de funcionamiento para garantizar que el sistema pueda determinar la ubicación del dispositivo con la precisión especificada.
+			\item Pruebas de estrés para verificar el rendimiento del sistema bajo cargas máximas esperadas.
+			\item Pruebas de seguridad para identificar y mitigar posibles vulnerabilidades en la comunicación entre el \textit{hub} y los \textit{beacons}.
+			\item Pruebas de conectividad y comunicación entre los \textit{beacons} y el \textit{hub} para asegurar una transmisión de señal confiable.
+		\end{enumerate}
+	\item Requerimientos de la interfaz de usuario
+		\begin{enumerate}
+			\item La interfaz de usuario debe ser intuitiva y fácil de usar, permitiendo la visualización de la ubicación del dispositivo de manera clara y precisa.
+			\item Debe haber opciones para filtrar y buscar registros de ubicaciones en la base de datos.
+			\item La interfaz de usuario debe ser completamente responsiva y compatible con dispositivos móviles para facilitar su acceso desde diferentes plataformas.
+			\item Se deben implementar mecanismos de notificación o alerta en caso de fallos en la determinación de la ubicación del dispositivo.
+		\end{enumerate}
+	\item Requerimientos interoperabilidad
+		\begin{enumerate}
+			\item El sistema debe ser compatible con diferentes versiones de \textit{beacons} BLE y dispositivos móviles con \textit{bluetooth}.
+			\item Debe ser posible integrar el sistema con otras aplicaciones o sistemas a través de una API.
+			\item El sistema debe ser compatible con diferentes sistemas operativos de dispositivos móviles, como iOS y Android.
+		\end{enumerate}
+	\item Requerimientos de seguridad y cumplimiento normativo
+		\begin{enumerate}
+			\item El sistema debe cumplir con las regulaciones y normas de privacidad de datos vigentes, como GDPR u otras aplicables.
+			\item Debe implementarse un sistema de autenticación y autorización para acceder a la interfaz de usuario y los datos almacenados en MongoDB.
+			\item Debe establecerse un registro de auditoría para rastrear el acceso y las acciones realizadas en la base de datos y la interfaz de usuario.
+			\item Se debe implementar encriptación de extremo a extremo para proteger la comunicación entre los \textit{beacons}, el \textit{hub} y la base de datos.
+		\end{enumerate}
 \end{enumerate}
-
-Leyendo los requerimientos se debe poder interpretar cómo será el proyecto y su funcionalidad.
-
-Indicar claramente cuál es la prioridad entre los distintos requerimientos y si hay requerimientos opcionales. 
-
-No olvidarse de que los requerimientos incluyen a las regulaciones y normas vigentes!!!
-
-Y al escribirlos seguir las siguientes reglas:
-\begin{itemize}
-	\item Ser breve y conciso (nadie lee cosas largas). 
-	\item Ser específico: no dejar lugar a confusiones.
-	\item Expresar los requerimientos en términos que sean cuantificables y medibles.
-\end{itemize}
-
-\end{consigna}
 
 \section{7. Historias de usuarios (\textit{Product backlog})}
 \label{sec:backlog}
 
-\begin{consigna}{red}
-Descripción: En esta sección se deben incluir las historias de usuarios y su ponderación (\textit{history points}). Recordar que las historias de usuarios son descripciones cortas y simples de una característica contada desde la perspectiva de la persona que desea la nueva capacidad, generalmente un usuario o cliente del sistema. La ponderación es un número entero que representa el tamaño de la historia comparada con otras historias de similar tipo.
+El criterio de selección de los \textit{story points} utilizado fue el que se puede observar en la figura \ref{fig:storyCriteria}. Se evaluó la complejidad y la incertidumbre de cada historia de usuario, con un máximo de puntos de 21 por historia.
 
-El formato propuesto es: "como [rol] quiero [tal cosa] para [tal otra cosa]."
+\begin{figure}[htpb]
+\centering 
+\includegraphics[width=.5\textwidth]{./Figuras/storyCriteria.png}
+\caption{Criterio para el cálculo de los \textit{story points}.}
+\label{fig:storyCriteria}
+\end{figure}
 
-Se debe indicar explícitamente el criterio para calcular los \textit{story points} de cada historia
-\end{consigna}
+\begin{enumerate}
+	\item Como administrador del sistema, quiero recibir señales BLE de hasta 6 \textit{beacons} para obtener datos de ubicación precisos. \textit{Story points}: 13
+	\item Como administrador del sistema, quiero que las actualizaciones se realicen en tiempo real o en un máximo de dos minutos para garantizar la frescura de los datos. \textit{Story points}: 5
+	\item Como administrador del sistema, quiero que cada dispositivo tenga un identificador único para poder rastrearlos de manera individual. \textit{Story points}: 5
+	\item Como administrador del sistema, quiero que el sistema procese y envíe las señales a la base de datos en MongoDB para almacenar la información. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero que se implemente un algoritmo de triangulación basado en las señales recibidas para determinar la ubicación de los dispositivos. \textit{Story points}: 13
+	\item Como administrador del sistema, quiero poder determinar la ubicación de un dispositivo específico para responder a solicitudes de localización. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero poder determinar cuánto tiempo un dispositivo estuvo en un lugar para analizar patrones de movimiento. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero proporcionar una interfaz de usuario intuitiva y accesible para que los usuarios puedan visualizar y acceder a los datos de ubicación. \textit{Story points}: 13
+	\item Como administrador del sistema, quiero gestionar la conexión y comunicación entre los \textit{beacons} y los dispositivos de procesamiento para asegurar una transmisión confiable. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero permitir la configuración de parámetros como la potencia de transmisión de los \textit{beacons} y la frecuencia de actualización de la ubicación para adaptar el sistema a diferentes entornos. \textit{Story points}: 5
+	\item Como administrador del sistema, quiero utilizar el protocolo MQTT para la gestión y envío de datos para asegurar una comunicación eficiente. \textit{Story points}: 5
+	\item Como administrador del sistema, quiero garantizar la fiabilidad y consistencia en el envío de datos a través del protocolo MQTT para evitar pérdida de información. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero establecer mecanismos de detección y gestión de errores en el envío de datos a través de MQTT para asegurar la resiliencia del sistema. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero manejar la concurrencia de múltiples dispositivos enviando datos a través de MQTT simultáneamente para garantizar un rendimiento óptimo. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero recibir notificaciones en caso de fallos en la comunicación a través de MQTT para responder de manera efectiva. \textit{Story points}: 5
+	\item Como administrador del sistema, quiero proporcionar documentación detallada sobre la configuración y conexión de los \textit{beacons} BLE (ESP32-C3) para facilitar la instalación y configuración. \textit{Story points}: 5
+	\item Como administrador del sistema, quiero documentar el proceso de configuración y programación del dispositivo de procesamiento (ESP32-C3) para actuar como \textit{hub} para ayudar a los usuarios en el proceso de configuración. \textit{Story points}: 5
+	\item Como administrador del sistema, quiero generar documentación sobre el algoritmo de triangulación utilizado, incluyendo diagramas y fórmulas utilizadas para proporcionar información detallada sobre el funcionamiento del sistema. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero proporcionar una guía de usuario para la interfaz de usuario del panel de control para facilitar su uso. \textit{Story points}: 5
+	\item Como administrador del sistema, quiero incluir comentarios detallados en el código fuente para facilitar el mantenimiento y comprensión futura del sistema. \textit{Story points}: 5
+	\item Como administrador del sistema, quiero proporcionar documentación detallada sobre la configuración de parámetros, como la potencia de transmisión de los \textit{beacons} y la frecuencia de actualización de la ubicación, para que los usuarios puedan personalizar la configuración según sus necesidades. \textit{Story points}: 5
+	\item Como administrador del sistema, quiero realizar pruebas de funcionamiento para garantizar que el sistema pueda determinar la ubicación del dispositivo con la precisión especificada. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero realizar pruebas de estrés para verificar el rendimiento del sistema bajo cargas máximas esperadas para asegurar su escalabilidad. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero realizar pruebas de seguridad para identificar y mitigar posibles vulnerabilidades en la comunicación entre el hub y los \textit{beacons} para garantizar la seguridad de los datos. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero realizar pruebas de conectividad y comunicación entre los \textit{beacons} y el \textit{hub} para asegurar una transmisión de señal confiable. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero que la interfaz de usuario sea intuitiva y fácil de usar, permitiendo la visualización de la ubicación del dispositivo de manera clara y precisa. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero opciones para filtrar y buscar registros de ubicaciones en la base de datos para facilitar la navegación y búsqueda de información. \textit{Story points}: 5
+	\item Como administrador del sistema, quiero que la interfaz de usuario sea completamente responsiva y compatible con dispositivos móviles para garantizar la accesibilidad desde diferentes plataformas. \textit{Story points}: 5
+	\item Como administrador del sistema, quiero implementar mecanismos de notificación o alerta en caso de fallos en la determinación de la ubicación del dispositivo para poder responder de manera proactiva. \textit{Story points}: 5
+	\item Como administrador del sistema, quiero que el sistema sea compatible con diferentes versiones de \textit{beacons} BLE y dispositivos móviles con Bluetooth para garantizar la flexibilidad y compatibilidad. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero que el sistema sea capaz de integrarse con otras aplicaciones o sistemas a través de una API para permitir la expansión y personalización del sistema. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero que el sistema sea compatible con diferentes sistemas operativos de dispositivos móviles, como iOS y Android, para asegurar una amplia cobertura de usuarios. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero garantizar que el sistema cumple con las regulaciones y normas de privacidad de datos vigentes, como GDPR u otras aplicables, para garantizar la protección de la privacidad del usuario. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero implementar un sistema de autenticación y autorización para acceder a la interfaz de usuario y los datos almacenados en MongoDB para proteger la seguridad de la información. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero establecer un registro de auditoría para rastrear el acceso y las acciones realizadas en la base de datos y la interfaz de usuario para garantizar la trazabilidad de las operaciones. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero implementar encriptación de extremo a extremo para proteger la comunicación entre los \textit{beacons}, el \textit{hub} y la base de datos para garantizar la integridad y seguridad de los datos. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero implementar medidas de seguridad adicionales para proteger la integridad y privacidad de los datos transmitidos a través del protocolo MQTT. \textit{Story points}: 8
+\end{enumerate}
 
 \section{8. Entregables principales del proyecto}
 \label{sec:entregables}
 
-\begin{consigna}{red}
-
-Los entregables del proyecto son (ejemplo):
+Los entregables del proyecto son los siguientes:
 
 \begin{itemize}
-	\item Manual de uso
-	\item Diagrama de circuitos esquemáticos
-	\item Código fuente del firmware
-	\item Diagrama de instalación
-	\item Informe final
-	\item etc...
-\end{itemize}
+	\item Documentación sobre la configuración y programación del dispositivo de procesamiento (ESP32-C3) para actuar como \textit{hub}.
+	\item Documentación del algoritmo de triangulación utilizado, incluyendo diagramas y fórmulas.
+	\item Guía de usuario para la interfaz de usuario del panel de control.
+	\item Documentación de código con comentarios detallados.
+	\item Diagrama de circuitos esquemáticos de la configuración hardware.
+	\item Código fuente del firmware para los \textit{beacons} y el dispositivo de procesamiento.
+	\item Diagrama de instalación que ilustre la disposición de los \textit{beacons} y el dispositivo de procesamiento.
+	\item Informe final que incluya una descripción detallada del proyecto, sus objetivos, requisitos, implementación y resultados.
+	\item Pruebas de funcionamiento documentadas, incluyendo resultados y conclusiones.
+	\item Resultados de pruebas con análisis y recomendaciones.
+	\item Informe de pruebas de seguridad con posibles vulnerabilidades identificadas y soluciones propuestas.
+	\item Documentación sobre la configuración de parámetros, como la potencia de transmisión de los beacons y la frecuencia de actualización de la ubicación.
+	\item Diagrama de flujo del proceso de comunicación entre los \textit{beacons}, el \textit{hub} y la base de datos.
+	\item Prototipos y muestras físicas de los \textit{beacons} y el resto del hardware (si aplica).
+	\item Presentación ejecutiva del proyecto para resumir los logros y beneficios del sistema.
+	\item Archivos de configuración y \textit{scripts} de despliegue para facilitar la implementación en un entorno de producción.
 
-\end{consigna}
+\end{itemize}
 
 \section{9. Desglose del trabajo en tareas}
 \label{sec:wbs}
 
-\begin{consigna}{red}
-El WBS debe tener relación directa o indirecta con los requerimientos.  Son todas las actividades que se harán en el proyecto para dar cumplimiento a los requerimientos. Se recomienda mostrar el WBS mediante una lista indexada:
-
 \begin{enumerate}
-\item Grupo de tareas 1
+\item Grupo de Tareas 1: gestión y planificación del proyecto (50 h)
 	\begin{enumerate}
-	\item Tarea 1 (tantas h)
-	\item Tarea 2 (tantas hs)
-	\item Tarea 3 (tantas h)
+	\item Planificación y programación del proyecto (30 h)
+	\item Corrección de plan de proyecto (10 h)
+	\item Gestión del tiempo del proyecto (10 h)
 	\end{enumerate}
-\item Grupo de tareas 2
+\item Grupo de Tareas 2: investigación y planificación inicial (55 h)
 	\begin{enumerate}
-	\item Tarea 1 (tantas h)
-	\item Tarea 2 (tantas h)
-	\item Tarea 3 (tantas h)
+	\item Investigación sobre tecnología BLE y \textit{beacons} (20 h)
+	\item Análisis de requisitos y definición de alcance (15 h)
+	\item Diseño preliminar de la arquitectura del sistema (20 h)
 	\end{enumerate}
-\item Grupo de tareas 3
+\item Grupo de Tareas 3: configuración de \textit{beacons} y dispositivos ESP32-C3 (105 h)
 	\begin{enumerate}
-	\item Tarea 1 (tantas h)
-	\item Tarea 2 (tantas h)
-	\item Tarea 3 (tantas h)
-	\item Tarea 4 (tantas h)
-	\item Tarea 5 (tantas h)
+	\item Investigación y documentación sobre la configuración de \textit{beacons} BLE (25 hs)
+	\item Programación y configuración de los \textit{beacons} BLE (30 h)
+	\item Configuración de dispositivos ESP32-C3 como \textit{hubs} (30 h)
+	\item Pruebas de conectividad entre \textit{beacons} y \textit{hubs} (20 h)
+	\end{enumerate}
+\item Grupo de Tareas 4: desarrollo de algoritmo de triangulación (70 h)
+	\begin{enumerate}
+	\item Investigación y selección de algoritmo de triangulación (30 h)
+	\item Implementación y pruebas del algoritmo de triangulación (40 h)
+	\end{enumerate}
+\item Grupo de Tareas 5: desarrollo de comunicación con MongoDB y MQTT (80 h)
+	\begin{enumerate}
+	\item Configuración y conexión con la base de datos MongoDB (25 h)
+	\item Implementación del protocolo MQTT para comunicación (35 h)
+	\item Pruebas de envío de datos a la base de datos (20 h)
+	\end{enumerate}
+\item Grupo de Tareas 6: desarrollo de interfaz de usuario (panel de control) (90 h)
+	\begin{enumerate}
+	\item Diseño y maquetación de la interfaz de usuario (30 h)
+	\item Desarrollo de la interfaz de usuario (40 h)
+	\item Implementación de filtros y opciones de búsqueda (20 h)
+	\end{enumerate}
+\item Grupo de Tareas 7: documentación y pruebas (155 h)
+	\begin{enumerate}
+	\item Documentación detallada de configuración de \textit{beacons} BLE (20 h)
+	\item Documentación de configuración de dispositivos ESP32-C3 como \textit{hubs} (20 h)
+	\item Documentación del algoritmo de triangulación (25 h)
+	\item Pruebas de funcionamiento y precisión de la ubicación (30 h)
+	\item Pruebas de estrés y rendimiento del sistema (30 h)
+	\item Pruebas de seguridad y mitigación de vulnerabilidades (30 h)
+	\end{enumerate}
+\item Grupo de Tareas 8: seguridad y cumplimiento normativo (50 h)
+	\begin{enumerate}
+	\item Implementación de medidas de seguridad (25 h)
+	\item Cumplimiento normativo y preparación de documentación (25 h)
+	\end{enumerate}
+\item Grupo de Tareas 9: tareas de cierre (60 h)
+	\begin{enumerate}
+	\item Generación de manuales y documentación final (25 h)
+	\item Preparación de la presentación ejecutiva (15 h)
+	\item Validación y pruebas finales antes de la entrega (20 h)
 	\end{enumerate}
 \end{enumerate}
 
-Cantidad total de horas: (tantas h)
-
-Se recomienda que no haya ninguna tarea que lleve más de 40 h. 
-
-\end{consigna}
+Cantidad total: 715 horas.
 
 \section{10. Diagrama de Activity On Node}
 \label{sec:AoN}
