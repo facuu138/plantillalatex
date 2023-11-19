@@ -71,15 +71,11 @@ espacios internos mediante BLE \textit{Beacons}}
 \hline
 \rowcolor[HTML]{C0C0C0} 
 Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios realizados} & Fecha      \\ \hline
-0      & Creación del documento                                 &\fechaInicioName \\ \hline
-1      & Se completa hasta el punto 5 inclusive                 & 31 de octubre de 2023 \\ \hline
-2      & Se completa hasta el punto 9 inclusive & 7 de noviembre de 2023
-%		  Se puede agregar algo más \newline
-%		  En distintas líneas \newline
-%		  Así                                                    & dd/mm/aaaa 
-\\ \hline
-%3      & Se completa hasta el punto 11 inclusive                & dd/mm/aaaa \\ \hline
-%4      & Se completa el plan	                                 & dd/mm/aaaa \\ \hline
+0      & Creación del documento &\fechaInicioName \\ \hline
+1      & Se completa hasta el punto 5 inclusive & 31 de octubre de 2023 \\ \hline
+2      & Se completa hasta el punto 9 inclusive & 7 de noviembre de 2023 \\ \hline
+3      & Se completa hasta el punto 12 inclusive & 14 de noviembre de 2023 \\ \hline
+4      & Se completa el plan	& 21 de noviembre de 2023 \\ \hline
 \end{tabularx}
 \end{table}
 
@@ -135,7 +131,7 @@ El sistema se compone de cuatro elementos principales: los BLE \textit{Beacons},
 
 \begin{figure}[htpb]
 \centering 
-\includegraphics[width=.7\textwidth]{./Figuras/diagBloques.png}
+\includegraphics[width=.7\textwidth]{./Figuras/diagBloques.pdf}
 \caption{Diagrama en bloques del sistema.}
 \label{fig:diagBloques}
 \end{figure}
@@ -293,7 +289,7 @@ El criterio de selección de los \textit{story points} utilizado fue el que se p
 
 \begin{figure}[htpb]
 \centering 
-\includegraphics[width=.5\textwidth]{./Figuras/storyCriteria.png}
+\includegraphics[width=.5\textwidth]{./Figuras/storyCriteria.pdf}
 \caption{Criterio para el cálculo de los \textit{story points}.}
 \label{fig:storyCriteria}
 \end{figure}
@@ -430,97 +426,35 @@ Cantidad total: 715 horas.
 \section{10. Diagrama de Activity On Node}
 \label{sec:AoN}
 
-\begin{consigna}{red}
-Armar el AoN a partir del WBS definido en la etapa anterior. 
-
 %La figura \ref{fig:AoN} fue elaborada con el paquete latex tikz y pueden consultar la siguiente referencia \textit{online}:
 
 %\url{https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ:_A_Tutorial_for_Beginners_(Part_3)\%E2\%80\%94Creating_Flowcharts}
 
-\end{consigna}
-
 \begin{figure}[htpb]
 \centering 
-\includegraphics[width=.8\textwidth]{./Figuras/AoN.png}
+\includegraphics[width=.7\textwidth]{./Figuras/AoN.pdf}
 \caption{Diagrama de \textit{Activity on Node}.}
 \label{fig:AoN}
 \end{figure}
 
-Indicar claramente en qué unidades están expresados los tiempos.
-De ser necesario indicar los caminos semicríticos y analizar sus tiempos mediante un cuadro.
-Es recomendable usar colores y un cuadro indicativo describiendo qué representa cada color, como se muestra en el siguiente ejemplo:
-
-
+El tiempo mostrado en el diagrama AoN (\textit{Activity on Node}) que se puede observar en la figura \ref{fig:AoN} se encuentra en horas totales por tarea. Cada uno de los colores representa un grupo de tareas tal como se ve en el recuadro disponible en la figura. El camino crítico tiene un total de 400 horas y esta delineado por flechas de color rojo.
 
 \section{11. Diagrama de Gantt}
-\label{sec:gantt}
-
-\begin{consigna}{red}
-
-Existen muchos programas y recursos \textit{online} para hacer diagramas de Gantt, entre los cuales destacamos:
-
-\begin{itemize}
-\item Planner
-\item GanttProject
-\item Trello + \textit{plugins}. En el siguiente link hay un tutorial oficial: \\ \url{https://blog.trello.com/es/diagrama-de-gantt-de-un-proyecto}
-\item Creately, herramienta online colaborativa. \\\url{https://creately.com/diagram/example/ieb3p3ml/LaTeX}
-\item Se puede hacer en latex con el paquete \textit{pgfgantt}\\ \url{http://ctan.dcc.uchile.cl/graphics/pgf/contrib/pgfgantt/pgfgantt.pdf}
-\end{itemize}
-
-Pegar acá una captura de pantalla del diagrama de Gantt, cuidando que la letra sea suficientemente grande como para ser legible. 
-Si el diagrama queda demasiado ancho, se puede pegar primero la ``tabla'' del Gantt y luego pegar la parte del diagrama de barras del diagrama de Gantt.
-
-Configurar el software para que en la parte de la tabla muestre los códigos del EDT (WBS).\\
-Configurar el software para que al lado de cada barra muestre el nombre de cada tarea.\\
-Revisar que la fecha de finalización coincida con lo indicado en el Acta Constitutiva.
-
-En la figura \ref{fig:gantt}, se muestra un ejemplo de diagrama de Gantt realizado con el paquete de \textit{pgfgantt}. En la plantilla pueden ver el código que lo genera y usarlo de base para construir el propio.
-
-\begin{figure}[htbp]
-\begin{center}
-\begin{ganttchart}{1}{12}
-  \gantttitle{2020}{12} \\
-  \gantttitlelist{1,...,12}{1} \\
-  \ganttgroup{Group 1}{1}{7} \\
-  \ganttbar{Task 1}{1}{2} \\
-  \ganttlinkedbar{Task 2}{3}{7} \ganttnewline
-  \ganttmilestone{Milestone o hito}{7} \ganttnewline
-  \ganttbar{Final Task}{8}{12}
-  \ganttlink{elem2}{elem3}
-  \ganttlink{elem3}{elem4}
-\end{ganttchart}
-\end{center}
-\caption{Diagrama de Gantt de ejemplo}
-\label{fig:gantt}
-\end{figure}
-
-
 \begin{landscape}
 \begin{figure}[htpb]
 \centering 
-\includegraphics[height=.85\textheight]{./Figuras/Gantt-2.png}
-\caption{Ejemplo de diagrama de Gantt rotado}
+\includegraphics[height=\textheight]{./Figuras/Gantt.pdf}
+\caption{Diagrama de Gantt.}
 \label{fig:diagGantt}
 \end{figure}
 
 \end{landscape}
 
-\end{consigna}
-
-
+\newpage
 \section{12. Presupuesto detallado del proyecto}
 \label{sec:presupuesto}
 
-\begin{consigna}{red}
-Si el proyecto es complejo entonces separarlo en partes:
-\begin{itemize}
-	\item Un total global, indicando el subtotal acumulado por cada una de las áreas.
-	\item El desglose detallado del subtotal de cada una de las áreas.
-\end{itemize}
-
-IMPORTANTE: No olvidarse de considerar los COSTOS INDIRECTOS.
-
-\end{consigna}
+El presupuesto está realizado en dólares estadounidenses (USD). La cotización al día 14 de noviembre de 2023 respecto al peso argentino (ARS) es de {\$ 350,08} para el  oficial.
 
 \begin{table}[htpb]
 \centering
@@ -533,24 +467,28 @@ Descripción &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Cantidad} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor unitario} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor total} \\ \hline
+  \multicolumn{1}{|l|}{Costo por hora del desarrollador}
  &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} \\ \hline
+  \multicolumn{1}{c|}{715} &
+  \multicolumn{1}{c|}{5 USD} &
+  \multicolumn{1}{c|}{3.575 USD} \\ \hline
+   \multicolumn{1}{|l|}{ESP32-C3}
  &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
+  \multicolumn{1}{c|}{9} &
+  \multicolumn{1}{c|}{15 USD} &
+  \multicolumn{1}{c|}{135 USD} \\ \hline
+\multicolumn{1}{|l|}{Otros materiales} &
+   \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{150 USD} &
+  \multicolumn{1}{c|}{150 USD} 
    \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
+   \multicolumn{1}{|l|}{Base de datos (MongoDB)} &
+   \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{100 USD} &
+  \multicolumn{1}{c|}{100 USD} 
    \\ \hline
 \multicolumn{3}{|c|}{SUBTOTAL} &
-  \multicolumn{1}{c|}{} \\ \hline
+  \multicolumn{1}{c|}{3.960 USD} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 \multicolumn{4}{|c|}{\cellcolor[HTML]{C0C0C0}COSTOS INDIRECTOS} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
@@ -558,22 +496,26 @@ Descripción &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Cantidad} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor unitario} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor total} \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
+\multicolumn{1}{|l|}{Espacio de trabajo}
+ &
+  \multicolumn{1}{c|}{12} &
+  \multicolumn{1}{c|}{300 USD} &
+  \multicolumn{1}{c|}{3.600 USD} \\ \hline
+\multicolumn{1}{|l|}{Computadora para desarrollo}
+ &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{1.000 USD} &
+  \multicolumn{1}{c|}{1.000 USD} \\ \hline
+\multicolumn{1}{|l|}{Servicios (luz, comida, agua)}
+ &
+  \multicolumn{1}{c|}{12} &
+  \multicolumn{1}{c|}{200 USD} &
+  \multicolumn{1}{c|}{2.400 USD} \\ \hline
 \multicolumn{3}{|c|}{SUBTOTAL} &
-  \multicolumn{1}{c|}{} \\ \hline
+  \multicolumn{1}{c|}{7.000 USD} \\ \hline
 \rowcolor[HTML]{C0C0C0}
 \multicolumn{3}{|c|}{TOTAL} &
+\multicolumn{1}{c|}{10.960 USD}
    \\ \hline
 \end{tabularx}%
 \end{table}
