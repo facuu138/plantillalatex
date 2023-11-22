@@ -7,7 +7,6 @@
 \renewcommand{\labelenumiv}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
 
 
-
 % El títulos de la memoria, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \ttitle
 \titulo{Sistema de monitoreo de ocupación en
 espacios internos mediante BLE \textit{Beacons}} 
@@ -125,7 +124,7 @@ En el contexto actual de la tecnología y la creciente demanda de soluciones de 
 
 La esencia de este proyecto radica en proporcionar a los propietarios de recintos o edificios una herramienta para la gestión eficiente de la ocupación, así como una herramienta más de recaudación de datos de uso y comportamiento. La solución propuesta se distingue por su capacidad para ofrecer datos precisos y actualizados sobre la cantidad de personas presentes en el recinto en cualquier momento dado, así como la capacidad de determinar el tiempo de visita promedio de un usuario.
 
-El desafío que aborda este proyecto es la falta de sistemas de monitoreo de ocupación precisos y en tiempo real en entornos interiores. La tecnología BLE \textit{Beacons} junto con la estación base ESP32-C3 proporciona una solución efectiva y rentable. Mediante la emisión de señales de baja energía, los \textit{Beacons} identifican la presencia de dispositivos móviles, permitiendo a la aplicación de monitoreo determinar la ocupación actual a través de un algoritmo de triangulación. Esta información se almacena en una base de datos no relacional alojada en MongoDB, brindando al propietario acceso a datos cruciales para la toma de decisiones informadas.
+El desafío que aborda este proyecto es la falta de sistemas de monitoreo de ocupación precisos y en tiempo real en entornos interiores. La tecnología BLE \textit{Beacons} junto con la estación base ESP32-C3 proporciona una solución efectiva y rentable. Mediante la emisión de señales de baja energía, los \textit{Beacons} identifican la presencia de dispositivos móviles, permitiendo a la aplicación de monitoreo determinar la ocupación actual a través de un algoritmo de triangulación. Esta información se almacena en una base de datos no relacional alojada en MongoDB, brindando al propietario acceso a datos cruciales para la toma de decisiones informadas. Adicional a la base de datos de MongoDB se tendrá un servidor MQTT HiveMQ \textit{Cloud}, el cual funcionara como intermediario entre los \textit{hubs} y MongoDB.
 
 El sistema se compone de cuatro elementos principales: los BLE \textit{Beacons}, la estación base ESP32-C3, la aplicación de monitoreo y la base de datos no relacional. Los \textit{Beacons} emiten señales identificativas, que son escaneadas por la estación base. La aplicación de monitoreo procesa estas señales para determinar la proximidad de los dispositivos móviles y actualiza la base de datos con la información de ocupación. A través de un panel de control intuitivo, el propietario del recinto puede visualizar la ocupación actual y acceder a informes históricos. En la figura \ref{fig:diagBloques} se presenta el diagrama de bloques del sistema, donde se observa claramente la distribución y diseño de los componentes clave.
 
@@ -178,6 +177,7 @@ El presente proyecto incluye:
 \begin{itemize}
 	\item La planificación, diseño, implementación y puesta en funcionamiento de un sistema de monitoreo de ocupación en espacios interiores utilizando la tecnología \textit{Bluetooth Low Energy} (BLE) \textit{Beacons} en un espacio no mayor a los 50 m$^2$.
 	\item La adquisición y ubicación estratégica de los BLE \textit{Beacons}, así como la configuración de la estación base ESP32-C3 y el desarrollo de la aplicación web de monitoreo. 
+	\item La utilización del protocolo MQTT en conjunto con el servidor HiveMQ \textit{Cloud} para gestionar la comunicación bidireccional.
 	\item La implementación de una base de datos no relacional en MongoDB para el almacenamiento y gestión de la información de ocupación. 
 	\item Pruebas para verificar el funcionamiento correcto del sistema 
 	\item Una interfaz de usuario intuitiva en forma de panel de control para que el propietario del recinto pueda visualizar la ocupación actual, acceder a informes históricos y analizar los datos si lo considera necesario.
@@ -208,6 +208,7 @@ Cualquier modificación o extensión del alcance del proyecto requerirá una rev
 	\item Factibilidad técnica: se considera que la tecnología BLE \textit{Beacons} y el microcontrolador ESP32-C3 son adecuados para la aplicación prevista y no presentarán inconvenientes técnicos significativos en su configuración y funcionamiento.
 	\item Cumplimiento de regulaciones y normativas: se parte del supuesto de que el proyecto cumple con todas las regulaciones y normativas locales, estatales y federales aplicables y que no se requerirá de permisos o licencias adicionales para la implementación del sistema.
 	\item Estabilidad de los protocolos de comunicación: se presupone que los protocolos de Internet estándar seleccionados (HTTP o MQTT) para la comunicación entre la aplicación móvil y la base de datos funcionarán de manera estable y confiable.
+	\item Comunicación con dispositivos: HiveMQ actúa como el servidor MQTT central para gestionar la comunicación bidireccional entre los \textit{hubs} y otros dispositivos. 
 	\item Acceso a la tecnología y herramientas: se asume que se contará con acceso a las tecnologías y herramientas necesarias para el desarrollo de la aplicación de monitoreo y la configuración de la base de datos en MongoDB.
 	\item Disponibilidad de energía eléctrica: se presupone que se dispondrá de suministro eléctrico confiable ya sea a través de baterías o red eléctrica para alimentar tanto los BLE \textit{Beacons} como la estación base y demás equipos asociados al sistema.
 	\item Compatibilidad de dispositivos móviles: se supone que los dispositivos móviles que se encuentren en el rango de los BLE \textit{Beacons} serán compatibles con la tecnología \textit{Bluetooth Low Energy} y podrán recibir las señales emitidas. 
@@ -242,6 +243,7 @@ Cualquier modificación o extensión del alcance del proyecto requerirá una rev
 					\item Se deben establecer mecanismos de detección y gestión de errores en el envío de datos a través de MQTT, asegurando la resiliencia del sistema ante posibles fallos de comunicación.
 					\item El sistema debe ser capaz de manejar la concurrencia de múltiples dispositivos enviando datos a través de MQTT de manera simultánea.
 					\item Se debe proporcionar un mecanismo de notificación o alerta en caso de fallos en la comunicación a través de MQTT para permitir una respuesta rápida y eficaz.
+					\item El servidor utilizado para la gestión del protocolo sera HiveMQ \textit{Cloud}.
 				\end{enumerate}
 		\end{enumerate}
 	\item Requerimientos de documentación
@@ -310,6 +312,7 @@ El criterio de selección de los \textit{story points} utilizado fue el que se p
 	\item Como administrador del sistema, quiero establecer mecanismos de detección y gestión de errores en el envío de datos a través de MQTT para asegurar la resiliencia del sistema. \textit{Story points}: 8
 	\item Como administrador del sistema, quiero manejar la concurrencia de múltiples dispositivos enviando datos a través de MQTT simultáneamente para garantizar un rendimiento óptimo. \textit{Story points}: 8
 	\item Como administrador del sistema, quiero recibir notificaciones en caso de fallos en la comunicación a través de MQTT para responder de manera efectiva. \textit{Story points}: 5
+	\item Como administrador del sistema, quiero utilizar HiveMQ \textit{Cloud} para garantizar la comunicación entre dispositivos \textit{hubs} e internet (\textit{cloud}).
 	\item Como administrador del sistema, quiero proporcionar documentación detallada sobre la configuración y conexión de los \textit{beacons} BLE (ESP32-C3) para facilitar la instalación y configuración. \textit{Story points}: 5
 	\item Como administrador del sistema, quiero documentar el proceso de configuración y programación del dispositivo de procesamiento (ESP32-C3) para actuar como \textit{hub} para ayudar a los usuarios en el proceso de configuración. \textit{Story points}: 5
 	\item Como administrador del sistema, quiero generar documentación sobre el algoritmo de triangulación utilizado, incluyendo diagramas y fórmulas utilizadas para proporcionar información detallada sobre el funcionamiento del sistema. \textit{Story points}: 8
@@ -318,7 +321,7 @@ El criterio de selección de los \textit{story points} utilizado fue el que se p
 	\item Como administrador del sistema, quiero proporcionar documentación detallada sobre la configuración de parámetros, como la potencia de transmisión de los \textit{beacons} y la frecuencia de actualización de la ubicación, para que los usuarios puedan personalizar la configuración según sus necesidades. \textit{Story points}: 5
 	\item Como administrador del sistema, quiero realizar pruebas de funcionamiento para garantizar que el sistema pueda determinar la ubicación del dispositivo con la precisión especificada. \textit{Story points}: 8
 	\item Como administrador del sistema, quiero realizar pruebas de estrés para verificar el rendimiento del sistema bajo cargas máximas esperadas para asegurar su escalabilidad. \textit{Story points}: 8
-	\item Como administrador del sistema, quiero realizar pruebas de seguridad para identificar y mitigar posibles vulnerabilidades en la comunicación entre el hub y los \textit{beacons} para garantizar la seguridad de los datos. \textit{Story points}: 8
+	\item Como administrador del sistema, quiero realizar pruebas de seguridad para identificar y mitigar posibles vulnerabilidades en la comunicación entre el \textit{hub} y los \textit{beacons} para garantizar la seguridad de los datos. \textit{Story points}: 8
 	\item Como administrador del sistema, quiero realizar pruebas de conectividad y comunicación entre los \textit{beacons} y el \textit{hub} para asegurar una transmisión de señal confiable. \textit{Story points}: 8
 	\item Como administrador del sistema, quiero que la interfaz de usuario sea intuitiva y fácil de usar, permitiendo la visualización de la ubicación del dispositivo de manera clara y precisa. \textit{Story points}: 8
 	\item Como administrador del sistema, quiero opciones para filtrar y buscar registros de ubicaciones en la base de datos para facilitar la navegación y búsqueda de información. \textit{Story points}: 5
@@ -439,9 +442,11 @@ Cantidad total: 715 horas.
 
 El tiempo mostrado en el diagrama AoN (\textit{Activity on Node}) que se puede observar en la figura \ref{fig:AoN} se encuentra en horas totales por tarea. Cada uno de los colores representa un grupo de tareas tal como se ve en el recuadro disponible en la figura. El camino crítico tiene un total de 400 horas y esta delineado por flechas de color rojo.
 
-\section{11. Diagrama de Gantt}
+\pagebreak
+
 \begin{landscape}
 \begin{figure}[htpb]
+\section{11. Diagrama de Gantt}
 \centering 
 \includegraphics[height=\textheight]{./Figuras/Gantt.pdf}
 \caption{Diagrama de Gantt.}
@@ -472,7 +477,7 @@ Descripción &
   \multicolumn{1}{c|}{715} &
   \multicolumn{1}{c|}{5 USD} &
   \multicolumn{1}{c|}{3.575 USD} \\ \hline
-   \multicolumn{1}{|l|}{ESP32-C3}
+   \multicolumn{1}{|l|}{ESPRESSIF ESP32-C3-DEVKITM-1}
  &
   \multicolumn{1}{c|}{9} &
   \multicolumn{1}{c|}{15 USD} &
@@ -482,7 +487,7 @@ Descripción &
   \multicolumn{1}{c|}{150 USD} &
   \multicolumn{1}{c|}{150 USD} 
    \\ \hline
-   \multicolumn{1}{|l|}{Base de datos (MongoDB)} &
+   \multicolumn{1}{|l|}{Base de datos (MongoDB + HiveMQ Cloud)} &
    \multicolumn{1}{c|}{1} &
   \multicolumn{1}{c|}{100 USD} &
   \multicolumn{1}{c|}{100 USD} 
@@ -524,29 +529,77 @@ Descripción &
 \section{13. Gestión de riesgos}
 \label{sec:riesgos}
 
-\begin{consigna}{red}
-a) Identificación de los riesgos (al menos cinco) y estimación de sus consecuencias:
+a) Identificación de los riesgos
  
-Riesgo 1: detallar el riesgo (riesgo es algo que si ocurre altera los planes previstos de forma negativa)
+Riesgo 1: Problemas de alcance de \textit{beacons}
 \begin{itemize}
-	\item Severidad (S): mientras más severo, más alto es el número (usar números del 1 al 10).\\
-	Justificar el motivo por el cual se asigna determinado número de severidad (S).
-	\item Probabilidad de ocurrencia (O): mientras más probable, más alto es el número (usar del 1 al 10).\\
-	Justificar el motivo por el cual se asigna determinado número de (O). 
+	\item Severidad (S): 7
+	\item Ocurrencia (O): 4
+	\item Descripción: Los \textit{beacons} pueden no tener el alcance necesario para proporcionar una cobertura efectiva en la ubicación deseada, lo que afectaría la precisión del sistema de ubicación.
 \end{itemize}   
 
-Riesgo 2:
+Riesgo 2: Interferencias en la infraestructura de la habitación
 \begin{itemize}
-	\item Severidad (S): 
-	\item Ocurrencia (O):
+	\item Severidad (S): 6
+	\item Ocurrencia (O): 3
+	\item Descripción: Interferencias electromagnéticas o estructurales en la habitación de prueba podrían afectar la calidad de la señal y la triangulación.
 \end{itemize}
 
-Riesgo 3:
+Riesgo 3: Problemas de conectividad entre \textit{hubs} y \textit{beacons}
 \begin{itemize}
-	\item Severidad (S): 
-	\item Ocurrencia (O):
+	\item Severidad (S): 8
+	\item Ocurrencia (O): 5
+	\item Descripción: Dada la poca experiencia del desarrollador en el ámbito de IoT, obstáculos físicos u otras interferencias, la conectividad entre dispositivos podría verse afectada, lo que podría comprometer la comunicación.
 \end{itemize}
 
+Riesgo 4: Cambio en la elección del protocolo (de MQTT a HTTP)
+\begin{itemize}
+	\item Severidad (S): 5
+	\item Ocurrencia (O): 2
+	\item Descripción: Descubrir que MQTT no es la mejor opción y decidir migrar a HTTP podría generar cambios significativos en el sistema y en la comunicación entre dispositivos.
+\end{itemize}
+
+Riesgo 5: Problemas de autenticación y autorización en MQTT
+\begin{itemize}
+	\item Severidad (S): 7
+	\item Ocurrencia (O): 4
+	\item Descripción: Dificultades en la implementación de autenticación y autorización en MQTT podrían afectar la seguridad del sistema.
+\end{itemize}
+
+Riesgo 6: Problemas de escalabilidad en MongoDB
+\begin{itemize}
+	\item Severidad (S): 7
+	\item Ocurrencia (O): 2
+	\item Descripción: Si la cantidad de datos crece significativamente, podrían surgir problemas de escalabilidad en MongoDB, afectando el rendimiento del sistema.
+\end{itemize}
+
+Riesgo 7: Cambios en la disponibilidad de materiales
+\begin{itemize}
+	\item Severidad (S): 5
+	\item Ocurrencia (O): 2
+	\item Descripción: Dificultades para adquirir todos los materiales necesarios podrían retrasar el proyecto y afectar la planificación.
+\end{itemize}
+
+Riesgo 8: Problemas de configuración y programación de los dispositivos (\textit{hubs} y \textit{beacons})
+\begin{itemize}
+	\item Severidad (S): 8
+	\item Ocurrencia (O): 6
+	\item Descripción: Dificultades en la configuración y programación de los dispositivos pueden generar retrasos significativos en el desarrollo y dada la poca experiencia del desarrollador y arquitecto de la solución, la severidad es alta.
+\end{itemize}
+
+Riesgo 9: Aumento inesperado de costos
+\begin{itemize}
+	\item Severidad (S): 4
+	\item Ocurrencia (O): 6
+	\item Descripción: Factores imprevistos podrían resultar en un aumento dramático de los costos, afectando el presupuesto original del proyecto.
+\end{itemize}
+
+Riesgo 10: Cambios en la normativa de privacidad y datos
+\begin{itemize}
+	\item Severidad (S): 4
+	\item Ocurrencia (O): 2
+	\item Descripción: Cambios en las regulaciones de privacidad y datos podrían requerir ajustes en la implementación para cumplir con nuevas normativas.
+\end{itemize}
 
 b) Tabla de gestión de riesgos:      (El RPN se calcula como RPN=SxO)
 
@@ -556,71 +609,147 @@ b) Tabla de gestión de riesgos:      (El RPN se calcula como RPN=SxO)
 \hline
 \rowcolor[HTML]{C0C0C0} 
 Riesgo & S & O & RPN & S* & O* & RPN* \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
+Riesgo 1: Problemas de alcance de \textit{beacons} & 7 & 4 & 28 & 5 & 3 & 15     \\ \hline
+Riesgo 2: Interferencias en la infraestructura de la habitación & 6 & 3 & 18 & - & - & -      \\ \hline
+Riesgo 3: Problemas de conectividad entre \textit{hubs} y \textit{beacons} & 8 & 5 & 40 & 6 & 4 & 24      \\ \hline
+Riesgo 4: Cambio en la elección del protocolo (de MQTT a HTTP) & 5 & 2 & 10 & - & - & -      \\ \hline
+Riesgo 5: Problemas de autenticación y autorización en MQTT & 7 & 4 & 28 & 4 & 3 & 12      \\ \hline
+Riesgo 6: Problemas de escalabilidad en MongoDB&  7 &  2 &  14   &   - & - & -       \\ \hline
+Riesgo 7: Cambios en la disponibilidad de materiales& 5  & 2  &   10  &  - & - & -       \\ \hline
+Riesgo 8: Problemas de configuración y programación de los dispositivos (\textit{hubs} y \textit{beacons})& 8  & 6  &    48 & 5 & 4 & 20      \\ \hline
+Riesgo 9: Aumento inesperado de costos       & 4  &  6 &  24   &  4  & 3   &   12   \\ \hline
+Riesgo 10: Cambios en la normativa de privacidad y datos       & 4  &  2 &   8  &  - & - & -       \\ \hline
 \end{tabularx}%
 \end{table}
 
 Criterio adoptado: 
-Se tomarán medidas de mitigación en los riesgos cuyos números de RPN sean mayores a...
+Se tomarán medidas de mitigación en los riesgos cuyos números de RPN sean mayores a 20.
 
 Nota: los valores marcados con (*) en la tabla corresponden luego de haber aplicado la mitigación.
 
 c) Plan de mitigación de los riesgos que originalmente excedían el RPN máximo establecido:
- 
-Riesgo 1: plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
-  Nueva asignación de S y O, con su respectiva justificación:
-  - Severidad (S): mientras más severo, más alto es el número (usar números del 1 al 10).
-          Justificar el motivo por el cual se asigna determinado número de severidad (S).
-  - Probabilidad de ocurrencia (O): mientras más probable, más alto es el número (usar del 1 al 10).
-          Justificar el motivo por el cual se asigna determinado número de (O).
 
-Riesgo 2: plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
+Riesgo 1: Problemas de alcance de \textit{beacons}
+\begin{itemize}
+	\item Plan de mitigación: Realizar un mapeo previo del entorno y ubicación estratégica de los \textit{beacons} para optimizar el alcance. Realizar pruebas piloto para evaluar el alcance real y ajustar según sea necesario.
+	\item Severidad (S*): 5. Al realizar un mapeo y pruebas piloto, se puede identificar y corregir problemas de alcance antes de implementar completamente el sistema, reduciendo así el impacto severo.
+	\item Ocurrencia (O*): 3. Al tener un plan detallado y pruebas piloto, se reducirá la probabilidad de problemas de alcance inesperados.
+\end{itemize}
  
-Riesgo 3: plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
+Riesgo 3: Problemas de conectividad entre \textit{hubs} y \textit{beacons}
+\begin{itemize}
+	\item Plan de mitigación: Realizar pruebas exhaustivas de conectividad en diferentes escenarios dentro de la habitación de prueba. Implementar redundancias en la conectividad para garantizar una comunicación estable.
+	\item Severidad (S*): 6. Las pruebas exhaustivas permitirán identificar y abordar problemas de conectividad antes de la implementación completa.
+	\item Ocurrencia (O*): 4. Al implementar redundancias y realizar pruebas, se reduce la probabilidad de problemas persistentes de conectividad.
+\end{itemize}
 
-\end{consigna}
+Riesgo 5: Problemas de autenticación y autorización en MQTT
+\begin{itemize}
+	\item Plan de mitigación: Capacitación adicional sobre seguridad en MQTT y consultas regulares con expertos en seguridad. Implementar buenas prácticas de seguridad recomendadas por la comunidad de MQTT.
+	\item Severidad (S*): 4. Con una comprensión mejorada de MQTT y la implementación de medidas de seguridad recomendadas, se reducirá significativamente el impacto potencial.
+	\item Ocurrencia (O*): 3. La capacitación y la consulta regular reducirán la probabilidad de errores de seguridad.
+\end{itemize}
+
+Riesgo 8: Problemas de configuración y programación de los dispositivos (\textit{hubs} y \textit{beacons})
+\begin{itemize}
+	\item Plan de mitigación: Obtener orientación adicional de expertos en IoT y utilizar recursos educativos disponibles. Realizar pruebas exhaustivas durante la configuración y programación para identificar y corregir problemas.
+	\item Severidad (S*): 5. Con orientación y pruebas exhaustivas, se reducirá la severidad al abordar problemas durante las etapas iniciales.
+	\item Ocurrencia (O*): 4. La orientación y las pruebas reducirán la probabilidad de errores de configuración y programación.
+\end{itemize}
+
+Riesgo 9: Aumento inesperado de costos
+\begin{itemize}
+	\item Plan de mitigación: Realizar un seguimiento continuo de los costos, buscar alternativas de bajo costo para materiales y considerar opciones de código abierto siempre que sea posible.
+	\item Severidad (S*): 4. El seguimiento continuo y la búsqueda de opciones de bajo costo reducirán el impacto financiero.
+	\item Ocurrencia (O*): 3. Al monitorear constantemente los costos y buscar alternativas, se reducirá la probabilidad de aumentos inesperados.
+\end{itemize}
 
 
 \section{14. Gestión de la calidad}
 \label{sec:calidad}
 
-\begin{consigna}{red}
-Elija al menos diez requerientos que a su criterio sean los más importantes/críticos/que aportan más valor y para cada uno de ellos indique las acciones de verificación y validación que permitan asegurar su cumplimiento.
+A continuación se listan todos los requerimientos que garantizan la calidad, el cumplimiento y el éxito del proyecto.
 
 \begin{itemize} 
-\item Req \#1: copiar acá el requerimiento.
+\item Req \#1: El sistema debe ser capaz de recibir señales BLE de hasta 6 \textit{beacons}.
 
 \begin{itemize}
-	\item Verificación para confirmar si se cumplió con lo requerido antes de mostrar el sistema al cliente. Detallar 
-	\item Validación con el cliente para confirmar que está de acuerdo en que se cumplió con lo requerido. Detallar  
+	\item Monitoreo en tiempo real de la recepción de señales de los 6 \textit{beacons} en un entorno de prueba.
+	\item Demostración al usuario del recinto, mostrando que el sistema puede detectar y recibir señales de los 6 \textit{beacons} correctamente.  
+\end{itemize}
+
+\item Req \#2: El sistema debe implementar un algoritmo de triangulación basado en las señales recibidas.
+
+\begin{itemize}
+	\item Revisión y prueba del código del algoritmo de triangulación, simulaciones en entornos controlados.
+	\item Demostración práctica al usuario del recinto, explicando cómo el sistema determina la ubicación a través de la triangulación. 
+\end{itemize}
+
+\item Req \#3: El sistema debe proporcionar una interfaz de usuario para visualizar y acceder a los datos.
+
+\begin{itemize}
+	\item Revisión del diseño y la funcionalidad de la interfaz de usuario, simulaciones de interacción.
+	\item Sesiones de prueba con el usuario del recinto para confirmar la facilidad de uso y la efectividad de la interfaz.
+\end{itemize}
+
+\item Req \#4: El sistema debe ser capaz de gestionar la conexión y comunicación entre los \textit{beacons} (ESP32-C3 \textit{Bluetooth Low Energy}) y los dispositivos de procesamiento (ESP32-C3 Wi-Fi).
+
+\begin{itemize}
+	\item Pruebas de comunicación entre \textit{beacons} y dispositivos de procesamiento en un entorno de prueba.
+	\item Observación del usuario del recinto durante las pruebas para confirmar una conexión estable y comunicación efectiva.
+\end{itemize}
+
+\item Req \#5: El sistema debe actualizarse en tiempo real o en un tiempo menor a dos minutos.
+
+\begin{itemize}
+	\item Monitoreo en tiempo real de la frecuencia de actualización del sistema durante pruebas continuas.
+	\item Confirmación con el usuario del recinto de que las actualizaciones son en tiempo real o dentro del límite especificado.
+\end{itemize}
+
+\item Req \#6: El sistema debe poder determinar la ubicación de un dispositivo determinado.
+
+\begin{itemize}
+	\item Pruebas de ubicación de dispositivos en diferentes puntos de la habitación.
+	\item Verificación visual con el usuario del recinto de que el sistema puede determinar la ubicación con precisión.
+\end{itemize}
+
+\item Req \#7: El sistema debe ser capaz de procesar las señales y enviarlas a la base de datos en MongoDB.
+
+\begin{itemize}
+	\item Monitoreo de la transferencia de señales a la base de datos durante pruebas de carga.
+	\item Confirmación de la integridad de los datos almacenados al revisarlos con el usuario del recinto.
+\end{itemize}
+
+\item Req \#8: El sistema debe permitir la configuración de parámetros como la potencia de transmisión de los \textit{beacons} y la frecuencia de actualización de la ubicación.
+
+\begin{itemize}
+	\item Pruebas de configuración de parámetros y monitoreo de su efectividad.
+	\item Confirmación con el usuario del recinto de que puede ajustar los parámetros según sea necesario.
+\end{itemize}
+
+\item Req \#9: El sistema debe poder determinar un identificador para cada dispositivo.
+
+\begin{itemize}
+	\item Pruebas de asignación de identificadores únicos a cada dispositivo.
+	\item Revisión de la asignación de identificadores con el usuario del recinto y confirmación de su unicidad.
+\end{itemize}
+
+\item Req \#10: El sistema debe poder determinar la cantidad de tiempo que un dispositivo estuvo en un lugar.
+
+\begin{itemize}
+	\item Pruebas de seguimiento del tiempo de permanencia en diferentes áreas.
+	\item Confirmación visual con el usuario del recinto de que el sistema puede determinar con precisión el tiempo de permanencia.
 \end{itemize}
 
 \end{itemize}
-
-Tener en cuenta que en este contexto se pueden mencionar simulaciones, cálculos, revisión de hojas de datos, consulta con expertos, mediciones, etc.  Las acciones de verificación suelen considerar al entregable como ``caja blanca'', es decir se conoce en profundidad su funcionamiento interno.  En cambio, las acciones de validación suelen considerar al entregable como ``caja negra'', es decir, que no se conocen los detalles de su funcionamiento interno.
-
-\end{consigna}
 
 \section{15. Procesos de cierre}    
 \label{sec:cierre}
 
-\begin{consigna}{red}
-Establecer las pautas de trabajo para realizar una reunión final de evaluación del proyecto, tal que contemple las siguientes actividades:
+El director del proyecto, junto con el responsable designado para la evaluación del cumplimiento, llevarán a cabo una revisión exhaustiva del plan de proyecto original. Este proceso implicará la comparación de hitos, plazos y entregables planificados con los logros alcanzados, así como el análisis de desviaciones y las razones detrás de los cambios en el plan. Se llevarán a cabo encuestas o entrevistas con los miembros del equipo para obtener retroalimentación adicional. Los indicadores clave incluirán el porcentaje de cumplimiento de hitos y plazos, el número de cambios significativos respecto al plan original y la satisfacción del equipo con respecto a la planificación.
 
-\begin{itemize}
-	\item Pautas de trabajo que se seguirán para analizar si se respetó el Plan de Proyecto original:
-	 - Indicar quién se ocupará de hacer esto y cuál será el procedimiento a aplicar. 
-	\item Identificación de las técnicas y procedimientos útiles e inútiles que se emplearon, y los problemas que surgieron y cómo se solucionaron:
-	 - Indicar quién se ocupará de hacer esto y cuál será el procedimiento para dejar registro.
-	\item Indicar quién organizará el acto de agradecimiento a todos los interesados, y en especial al equipo de trabajo y colaboradores:
-	  - Indicar esto y quién financiará los gastos correspondientes.
-\end{itemize}
+La responsabilidad recae en el equipo y el responsable del proyecto para la identificación y documentación de técnicas y procedimientos. Se realizará una revisión retrospectiva de las prácticas utilizadas, identificando aquellas que resultaron efectivas y las que presentaron dificultades. Se documentarán problemas encontrados y soluciones aplicadas, y se generará un informe detallado que incluirá lecciones aprendidas, buenas prácticas y áreas de mejora.
 
-\end{consigna}
-
+El responsable designado para la organización del evento tomará la iniciativa en la planificación de la ubicación, fecha y formato del acto de agradecimiento. Se establecerá un presupuesto que considerará la asignación de recursos del presupuesto del proyecto o, en su caso, la obtención de patrocinios o contribuciones externas. Además, se coordinarán agradecimientos específicos para el equipo de trabajo y colaboradores. El proceso incluirá la obtención de aprobación para el presupuesto y los detalles del evento.
 
 \end{document}
