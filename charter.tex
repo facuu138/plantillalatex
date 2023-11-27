@@ -91,7 +91,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en la implementación de un prototipo de un sistema de monitoreo de ocupación utilizando \textit{Beacons Bluetooth Low Energy}, y tendrá un presupuesto preliminar estimado de {715} h de trabajo y {\$200} USD, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
+Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en la implementación de un prototipo de un sistema de monitoreo de ocupación utilizando \textit{Beacons Bluetooth Low Energy}, y tendrá un presupuesto preliminar estimado de {715} h de trabajo y {\$10.960} USD, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -448,7 +448,7 @@ El tiempo mostrado en el diagrama AoN (\textit{Activity on Node}) que se puede o
 \begin{figure}[htpb]
 \section{11. Diagrama de Gantt}
 \centering 
-\includegraphics[height=\textheight]{./Figuras/Gantt.pdf}
+\includegraphics[height=.8\textheight]{./Figuras/Gantt.pdf}
 \caption{Diagrama de Gantt.}
 \label{fig:diagGantt}
 \end{figure}
@@ -531,74 +531,74 @@ Descripción &
 
 a) Identificación de los riesgos
  
-Riesgo 1: Problemas de alcance de \textit{beacons}
+Riesgo 1: problemas de alcance de \textit{beacons}.
 \begin{itemize}
-	\item Severidad (S): 7
-	\item Ocurrencia (O): 4
-	\item Descripción: Los \textit{beacons} pueden no tener el alcance necesario para proporcionar una cobertura efectiva en la ubicación deseada, lo que afectaría la precisión del sistema de ubicación.
+	\item Severidad (S): 7.
+	\item Ocurrencia (O): 4.
+	\item Descripción: los \textit{beacons} pueden no tener el alcance necesario para proporcionar una cobertura efectiva en la ubicación deseada, lo que afectaría la precisión del sistema de ubicación.
 \end{itemize}   
 
-Riesgo 2: Interferencias en la infraestructura de la habitación
+Riesgo 2: interferencias en la infraestructura de la habitación.
 \begin{itemize}
-	\item Severidad (S): 6
-	\item Ocurrencia (O): 3
-	\item Descripción: Interferencias electromagnéticas o estructurales en la habitación de prueba podrían afectar la calidad de la señal y la triangulación.
+	\item Severidad (S): 6.
+	\item Ocurrencia (O): 3.
+	\item Descripción: interferencias electromagnéticas o estructurales en la habitación de prueba podrían afectar la calidad de la señal y la triangulación.
 \end{itemize}
 
-Riesgo 3: Problemas de conectividad entre \textit{hubs} y \textit{beacons}
+Riesgo 3: problemas de conectividad entre \textit{hubs} y \textit{beacons}.
 \begin{itemize}
-	\item Severidad (S): 8
-	\item Ocurrencia (O): 5
-	\item Descripción: Dada la poca experiencia del desarrollador en el ámbito de IoT, obstáculos físicos u otras interferencias, la conectividad entre dispositivos podría verse afectada, lo que podría comprometer la comunicación.
+	\item Severidad (S): 8.
+	\item Ocurrencia (O): 5.
+	\item Descripción: dada la poca experiencia del desarrollador en el ámbito de IoT, obstáculos físicos u otras interferencias, la conectividad entre dispositivos podría verse afectada, lo que podría comprometer la comunicación.
 \end{itemize}
 
-Riesgo 4: Cambio en la elección del protocolo (de MQTT a HTTP)
+Riesgo 4: cambio en la elección del protocolo (de MQTT a HTTP).
 \begin{itemize}
-	\item Severidad (S): 5
-	\item Ocurrencia (O): 2
-	\item Descripción: Descubrir que MQTT no es la mejor opción y decidir migrar a HTTP podría generar cambios significativos en el sistema y en la comunicación entre dispositivos.
+	\item Severidad (S): 5.
+	\item Ocurrencia (O): 2.
+	\item Descripción: descubrir que MQTT no es la mejor opción y decidir migrar a HTTP podría generar cambios significativos en el sistema y en la comunicación entre dispositivos.
 \end{itemize}
 
-Riesgo 5: Problemas de autenticación y autorización en MQTT
+Riesgo 5: problemas de autenticación y autorización en MQTT.
 \begin{itemize}
-	\item Severidad (S): 7
-	\item Ocurrencia (O): 4
-	\item Descripción: Dificultades en la implementación de autenticación y autorización en MQTT podrían afectar la seguridad del sistema.
+	\item Severidad (S): 7.
+	\item Ocurrencia (O): 4.
+	\item Descripción: dificultades en la implementación de autenticación y autorización en MQTT podrían afectar la seguridad del sistema.
 \end{itemize}
 
-Riesgo 6: Problemas de escalabilidad en MongoDB
+Riesgo 6: problemas de escalabilidad en MongoDB.
 \begin{itemize}
-	\item Severidad (S): 7
-	\item Ocurrencia (O): 2
-	\item Descripción: Si la cantidad de datos crece significativamente, podrían surgir problemas de escalabilidad en MongoDB, afectando el rendimiento del sistema.
+	\item Severidad (S): 7.
+	\item Ocurrencia (O): 2.
+	\item Descripción: si la cantidad de datos crece significativamente podrían surgir problemas de escalabilidad en MongoDB que afecten el rendimiento del sistema.
 \end{itemize}
 
-Riesgo 7: Cambios en la disponibilidad de materiales
+Riesgo 7: cambios en la disponibilidad de materiales.
 \begin{itemize}
-	\item Severidad (S): 5
-	\item Ocurrencia (O): 2
-	\item Descripción: Dificultades para adquirir todos los materiales necesarios podrían retrasar el proyecto y afectar la planificación.
+	\item Severidad (S): 5.
+	\item Ocurrencia (O): 2.
+	\item Descripción: dificultades para adquirir todos los materiales necesarios podrían retrasar el proyecto y afectar la planificación.
 \end{itemize}
 
-Riesgo 8: Problemas de configuración y programación de los dispositivos (\textit{hubs} y \textit{beacons})
+Riesgo 8: problemas de configuración y programación de los dispositivos (\textit{hubs} y \textit{beacons}).
 \begin{itemize}
-	\item Severidad (S): 8
-	\item Ocurrencia (O): 6
-	\item Descripción: Dificultades en la configuración y programación de los dispositivos pueden generar retrasos significativos en el desarrollo y dada la poca experiencia del desarrollador y arquitecto de la solución, la severidad es alta.
+	\item Severidad (S): 8.
+	\item Ocurrencia (O): 6.
+	\item Descripción: dificultades en la configuración y programación de los dispositivos pueden generar retrasos significativos en el desarrollo y dada la poca experiencia del desarrollador y arquitecto de la solución, la severidad es alta.
 \end{itemize}
 
-Riesgo 9: Aumento inesperado de costos
+Riesgo 9: aumento inesperado de costos.
 \begin{itemize}
-	\item Severidad (S): 4
-	\item Ocurrencia (O): 6
-	\item Descripción: Factores imprevistos podrían resultar en un aumento dramático de los costos, afectando el presupuesto original del proyecto.
+	\item Severidad (S): 4.
+	\item Ocurrencia (O): 6.
+	\item Descripción: factores imprevistos podrían resultar en un aumento dramático de los costos que afecten el presupuesto original del proyecto.
 \end{itemize}
 
-Riesgo 10: Cambios en la normativa de privacidad y datos
+Riesgo 10: cambios en la normativa de privacidad y datos.
 \begin{itemize}
-	\item Severidad (S): 4
-	\item Ocurrencia (O): 2
-	\item Descripción: Cambios en las regulaciones de privacidad y datos podrían requerir ajustes en la implementación para cumplir con nuevas normativas.
+	\item Severidad (S): 4.
+	\item Ocurrencia (O): 2.
+	\item Descripción: cambios en las regulaciones de privacidad y datos podrían requerir ajustes en la implementación para cumplir con nuevas normativas.
 \end{itemize}
 
 b) Tabla de gestión de riesgos:      (El RPN se calcula como RPN=SxO)
@@ -609,57 +609,57 @@ b) Tabla de gestión de riesgos:      (El RPN se calcula como RPN=SxO)
 \hline
 \rowcolor[HTML]{C0C0C0} 
 Riesgo & S & O & RPN & S* & O* & RPN* \\ \hline
-Riesgo 1: Problemas de alcance de \textit{beacons} & 7 & 4 & 28 & 5 & 3 & 15     \\ \hline
-Riesgo 2: Interferencias en la infraestructura de la habitación & 6 & 3 & 18 & - & - & -      \\ \hline
-Riesgo 3: Problemas de conectividad entre \textit{hubs} y \textit{beacons} & 8 & 5 & 40 & 6 & 4 & 24      \\ \hline
-Riesgo 4: Cambio en la elección del protocolo (de MQTT a HTTP) & 5 & 2 & 10 & - & - & -      \\ \hline
+Problemas de alcance de \textit{beacons} & 7 & 4 & 28 & 5 & 3 & 15     \\ \hline
+Interferencias en la infraestructura de la habitación & 6 & 3 & 18 & - & - & -      \\ \hline
+Problemas de conectividad entre \textit{hubs} y \textit{beacons} & 8 & 5 & 40 & 6 & 4 & 24      \\ \hline
+Cambio en la elección del protocolo (de MQTT a HTTP) & 5 & 2 & 10 & - & - & -      \\ \hline
 Riesgo 5: Problemas de autenticación y autorización en MQTT & 7 & 4 & 28 & 4 & 3 & 12      \\ \hline
-Riesgo 6: Problemas de escalabilidad en MongoDB&  7 &  2 &  14   &   - & - & -       \\ \hline
-Riesgo 7: Cambios en la disponibilidad de materiales& 5  & 2  &   10  &  - & - & -       \\ \hline
-Riesgo 8: Problemas de configuración y programación de los dispositivos (\textit{hubs} y \textit{beacons})& 8  & 6  &    48 & 5 & 4 & 20      \\ \hline
-Riesgo 9: Aumento inesperado de costos       & 4  &  6 &  24   &  4  & 3   &   12   \\ \hline
-Riesgo 10: Cambios en la normativa de privacidad y datos       & 4  &  2 &   8  &  - & - & -       \\ \hline
+Problemas de escalabilidad en MongoDB&  7 &  2 &  14   &   - & - & -       \\ \hline
+Cambios en la disponibilidad de materiales& 5  & 2  &   10  &  - & - & -       \\ \hline
+Problemas de configuración y programación de los dispositivos (\textit{hubs} y \textit{beacons})& 8  & 6  &    48 & 5 & 4 & 20      \\ \hline
+Aumento inesperado de costos       & 4  &  6 &  24   &  4  & 3   &   12   \\ \hline
+Cambios en la normativa de privacidad y datos       & 4  &  2 &   8  &  - & - & -       \\ \hline
 \end{tabularx}%
 \end{table}
 
 Criterio adoptado: 
-Se tomarán medidas de mitigación en los riesgos cuyos números de RPN sean mayores a 20.
+se tomarán medidas de mitigación en los riesgos cuyos números de RPN sean mayores a 20.
 
 Nota: los valores marcados con (*) en la tabla corresponden luego de haber aplicado la mitigación.
 
 c) Plan de mitigación de los riesgos que originalmente excedían el RPN máximo establecido:
 
-Riesgo 1: Problemas de alcance de \textit{beacons}
+Riesgo 1: problemas de alcance de \textit{beacons}.
 \begin{itemize}
-	\item Plan de mitigación: Realizar un mapeo previo del entorno y ubicación estratégica de los \textit{beacons} para optimizar el alcance. Realizar pruebas piloto para evaluar el alcance real y ajustar según sea necesario.
+	\item Plan de mitigación: realizar un mapeo previo del entorno y ubicación estratégica de los \textit{beacons} para optimizar el alcance. Realizar pruebas piloto para evaluar el alcance real y ajustar según sea necesario.
 	\item Severidad (S*): 5. Al realizar un mapeo y pruebas piloto, se puede identificar y corregir problemas de alcance antes de implementar completamente el sistema, reduciendo así el impacto severo.
 	\item Ocurrencia (O*): 3. Al tener un plan detallado y pruebas piloto, se reducirá la probabilidad de problemas de alcance inesperados.
 \end{itemize}
  
-Riesgo 3: Problemas de conectividad entre \textit{hubs} y \textit{beacons}
+Riesgo 3: problemas de conectividad entre \textit{hubs} y \textit{beacons}.
 \begin{itemize}
-	\item Plan de mitigación: Realizar pruebas exhaustivas de conectividad en diferentes escenarios dentro de la habitación de prueba. Implementar redundancias en la conectividad para garantizar una comunicación estable.
+	\item Plan de mitigación: realizar pruebas exhaustivas de conectividad en diferentes escenarios dentro de la habitación de prueba. Implementar redundancias en la conectividad para garantizar una comunicación estable.
 	\item Severidad (S*): 6. Las pruebas exhaustivas permitirán identificar y abordar problemas de conectividad antes de la implementación completa.
 	\item Ocurrencia (O*): 4. Al implementar redundancias y realizar pruebas, se reduce la probabilidad de problemas persistentes de conectividad.
 \end{itemize}
 
-Riesgo 5: Problemas de autenticación y autorización en MQTT
+Riesgo 5: problemas de autenticación y autorización en MQTT.
 \begin{itemize}
-	\item Plan de mitigación: Capacitación adicional sobre seguridad en MQTT y consultas regulares con expertos en seguridad. Implementar buenas prácticas de seguridad recomendadas por la comunidad de MQTT.
+	\item Plan de mitigación: capacitación adicional sobre seguridad en MQTT y consultas regulares con expertos en seguridad. Implementar buenas prácticas de seguridad recomendadas por la comunidad de MQTT.
 	\item Severidad (S*): 4. Con una comprensión mejorada de MQTT y la implementación de medidas de seguridad recomendadas, se reducirá significativamente el impacto potencial.
 	\item Ocurrencia (O*): 3. La capacitación y la consulta regular reducirán la probabilidad de errores de seguridad.
 \end{itemize}
 
-Riesgo 8: Problemas de configuración y programación de los dispositivos (\textit{hubs} y \textit{beacons})
+Riesgo 8: problemas de configuración y programación de los dispositivos (\textit{hubs} y \textit{beacons}).
 \begin{itemize}
-	\item Plan de mitigación: Obtener orientación adicional de expertos en IoT y utilizar recursos educativos disponibles. Realizar pruebas exhaustivas durante la configuración y programación para identificar y corregir problemas.
+	\item Plan de mitigación: obtener orientación adicional de expertos en IoT y utilizar recursos educativos disponibles. Realizar pruebas exhaustivas durante la configuración y programación para identificar y corregir problemas.
 	\item Severidad (S*): 5. Con orientación y pruebas exhaustivas, se reducirá la severidad al abordar problemas durante las etapas iniciales.
 	\item Ocurrencia (O*): 4. La orientación y las pruebas reducirán la probabilidad de errores de configuración y programación.
 \end{itemize}
 
-Riesgo 9: Aumento inesperado de costos
+Riesgo 9: aumento inesperado de costos.
 \begin{itemize}
-	\item Plan de mitigación: Realizar un seguimiento continuo de los costos, buscar alternativas de bajo costo para materiales y considerar opciones de código abierto siempre que sea posible.
+	\item Plan de mitigación: realizar un seguimiento continuo de los costos, buscar alternativas de bajo costo para materiales y considerar opciones de código abierto siempre que sea posible.
 	\item Severidad (S*): 4. El seguimiento continuo y la búsqueda de opciones de bajo costo reducirán el impacto financiero.
 	\item Ocurrencia (O*): 3. Al monitorear constantemente los costos y buscar alternativas, se reducirá la probabilidad de aumentos inesperados.
 \end{itemize}
@@ -671,76 +671,75 @@ Riesgo 9: Aumento inesperado de costos
 A continuación se listan todos los requerimientos que garantizan la calidad, el cumplimiento y el éxito del proyecto.
 
 \begin{itemize} 
-\item Req \#1: El sistema debe ser capaz de recibir señales BLE de hasta 6 \textit{beacons}.
+\item Req 1.1.1: el sistema debe ser capaz de recibir señales BLE de hasta 6 \textit{beacons}.
 
 \begin{itemize}
-	\item Monitoreo en tiempo real de la recepción de señales de los 6 \textit{beacons} en un entorno de prueba.
-	\item Demostración al usuario del recinto, mostrando que el sistema puede detectar y recibir señales de los 6 \textit{beacons} correctamente.  
+	\item Verificación: monitoreo en tiempo real de la recepción de señales de los 6 \textit{beacons} en un entorno de prueba.
+	\item Validación: demostración al usuario del recinto, mostrando que el sistema puede detectar y recibir señales de los 6 \textit{beacons} correctamente.  
 \end{itemize}
 
-\item Req \#2: El sistema debe implementar un algoritmo de triangulación basado en las señales recibidas.
+\item Req 1.1.2: el sistema debe actualizarse en tiempo real o en un tiempo menor a dos minutos.
 
 \begin{itemize}
-	\item Revisión y prueba del código del algoritmo de triangulación, simulaciones en entornos controlados.
-	\item Demostración práctica al usuario del recinto, explicando cómo el sistema determina la ubicación a través de la triangulación. 
+	\item Verificación: monitoreo en tiempo real de la frecuencia de actualización del sistema durante pruebas continuas.
+	\item Validación: confirmación con el usuario del recinto de que las actualizaciones son en tiempo real o dentro del límite especificado.
 \end{itemize}
 
-\item Req \#3: El sistema debe proporcionar una interfaz de usuario para visualizar y acceder a los datos.
+\item Req 1.1.3: el sistema debe poder determinar un identificador para cada dispositivo.
 
 \begin{itemize}
-	\item Revisión del diseño y la funcionalidad de la interfaz de usuario, simulaciones de interacción.
-	\item Sesiones de prueba con el usuario del recinto para confirmar la facilidad de uso y la efectividad de la interfaz.
+	\item Verificación: pruebas de asignación de identificadores únicos a cada dispositivo.
+	\item Validación: revisión de la asignación de identificadores con el usuario del recinto y confirmación de su unicidad.
 \end{itemize}
 
-\item Req \#4: El sistema debe ser capaz de gestionar la conexión y comunicación entre los \textit{beacons} (ESP32-C3 \textit{Bluetooth Low Energy}) y los dispositivos de procesamiento (ESP32-C3 Wi-Fi).
+\item Req 1.1.4: el sistema debe ser capaz de procesar las señales y enviarlas a la base de datos en MongoDB.
 
 \begin{itemize}
-	\item Pruebas de comunicación entre \textit{beacons} y dispositivos de procesamiento en un entorno de prueba.
-	\item Observación del usuario del recinto durante las pruebas para confirmar una conexión estable y comunicación efectiva.
+	\item Verificación: monitoreo de la transferencia de señales a la base de datos durante pruebas de carga.
+	\item Validación: confirmación de la integridad de los datos almacenados al revisarlos con el usuario del recinto.
 \end{itemize}
 
-\item Req \#5: El sistema debe actualizarse en tiempo real o en un tiempo menor a dos minutos.
+\item Req 1.1.5: el sistema debe implementar un algoritmo de triangulación basado en las señales recibidas.
 
 \begin{itemize}
-	\item Monitoreo en tiempo real de la frecuencia de actualización del sistema durante pruebas continuas.
-	\item Confirmación con el usuario del recinto de que las actualizaciones son en tiempo real o dentro del límite especificado.
+	\item Verificación: revisión y prueba del código del algoritmo de triangulación, simulaciones en entornos controlados.
+	\item Validación: demostración práctica al usuario del recinto, explicando cómo el sistema determina la ubicación a través de la triangulación. 
 \end{itemize}
 
-\item Req \#6: El sistema debe poder determinar la ubicación de un dispositivo determinado.
+\item Req 1.1.6: el sistema debe poder determinar la ubicación de un dispositivo determinado.
 
 \begin{itemize}
-	\item Pruebas de ubicación de dispositivos en diferentes puntos de la habitación.
-	\item Verificación visual con el usuario del recinto de que el sistema puede determinar la ubicación con precisión.
+	\item Verificación: pruebas de ubicación de dispositivos en diferentes puntos de la habitación.
+	\item Validación: verificación visual con el usuario del recinto de que el sistema puede determinar la ubicación con precisión.
 \end{itemize}
 
-\item Req \#7: El sistema debe ser capaz de procesar las señales y enviarlas a la base de datos en MongoDB.
+\item Req 1.1.7: el sistema debe poder determinar la cantidad de tiempo que un dispositivo estuvo en un lugar.
 
 \begin{itemize}
-	\item Monitoreo de la transferencia de señales a la base de datos durante pruebas de carga.
-	\item Confirmación de la integridad de los datos almacenados al revisarlos con el usuario del recinto.
+	\item Verificación: pruebas de seguimiento del tiempo de permanencia en diferentes áreas.
+	\item Validación: confirmación visual con el usuario del recinto de que el sistema puede determinar con precisión el tiempo de permanencia.
 \end{itemize}
 
-\item Req \#8: El sistema debe permitir la configuración de parámetros como la potencia de transmisión de los \textit{beacons} y la frecuencia de actualización de la ubicación.
+\item Req 1.1.8: el sistema debe proporcionar una interfaz de usuario para visualizar y acceder a los datos.
 
 \begin{itemize}
-	\item Pruebas de configuración de parámetros y monitoreo de su efectividad.
-	\item Confirmación con el usuario del recinto de que puede ajustar los parámetros según sea necesario.
+	\item Verificación: revisión del diseño y la funcionalidad de la interfaz de usuario, simulaciones de interacción.
+	\item Validación: sesiones de prueba con el usuario del recinto para confirmar la facilidad de uso y la efectividad de la interfaz.
 \end{itemize}
 
-\item Req \#9: El sistema debe poder determinar un identificador para cada dispositivo.
+\item Req 1.2.1: el sistema debe ser capaz de gestionar la conexión y comunicación entre los \textit{beacons} (ESP32-C3 \textit{Bluetooth Low Energy}) y los dispositivos de procesamiento (ESP32-C3 Wi-Fi).
 
 \begin{itemize}
-	\item Pruebas de asignación de identificadores únicos a cada dispositivo.
-	\item Revisión de la asignación de identificadores con el usuario del recinto y confirmación de su unicidad.
+	\item Verificación: pruebas de comunicación entre \textit{beacons} y dispositivos de procesamiento en un entorno de prueba.
+	\item Validación: observación del usuario del recinto durante las pruebas para confirmar una conexión estable y comunicación efectiva.
 \end{itemize}
 
-\item Req \#10: El sistema debe poder determinar la cantidad de tiempo que un dispositivo estuvo en un lugar.
+\item Req 1.2.2: el sistema debe permitir la configuración de parámetros como la potencia de transmisión de los \textit{beacons} y la frecuencia de actualización de la ubicación.
 
 \begin{itemize}
-	\item Pruebas de seguimiento del tiempo de permanencia en diferentes áreas.
-	\item Confirmación visual con el usuario del recinto de que el sistema puede determinar con precisión el tiempo de permanencia.
+	\item Verificación: pruebas de configuración de parámetros y monitoreo de su efectividad.
+	\item Validación: confirmación con el usuario del recinto de que puede ajustar los parámetros según sea necesario.
 \end{itemize}
-
 \end{itemize}
 
 \section{15. Procesos de cierre}    
